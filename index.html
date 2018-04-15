@@ -7,7 +7,7 @@
 	<body>
 		<script>
 
-			var width = 2000,
+			var width = 500,
 				height = 700;
 			var svg = d3.select('body')
 						.append('svg')
@@ -18,7 +18,7 @@
 						.scale(300)
 						.rotate([0, 0])
 						.center([0, 42.313])
-						.translate([width/2, height/4]);
+						.translate([width/5, height/15]);
 			var geoPath = d3.geoPath()
 						.projection(recProjection);
 			g.selectAll('path')
@@ -30,33 +30,36 @@
 				.attr('d', geoPath);
 
 
-			d3.csv("join.csv", function(datum){
+			d3.csv("/csv/african_conflicts.csv", function(datum){
 				datum = datum.filter(function(d){
-					if (isNaN(d.Longitude)){
+					if (isNaN(d.LONGITUDE)){
 						return false;
 					}
-					if (isNaN(d.Latitude)){
+					if (isNaN(d.LATITUDE)){
+						return false;
+					}
+					if (isNaN(d.FATALITIES)){
+
 						return false;
 					}
 
-					d.Longitude = parseFloat(d.Longitude);
-					d.Latitude = parseFloat(d.Latitude);
-					d.Killed = +d.Killed;
-					d.Wounded = +d.Wounded;
+					d.LONGITUDE = parseFloat(d.LONGITUDE);
+					d.LATITUDE = parseFloat(d.LATITUDE);
+					d.FATALITIES = +d.FATALITIES;
 					return true;
 				})
 
 				var grouped = d3.nest()
-							.key(function(d) { return d.Country; })
+							.key(function(d) { return d.COUNTRY; })
 							.rollup(function(v) { return {
-								total: d3.sum(v, function(d){ return d.Killed
-									+ d.Wounded; }),
-								lon: d3.mean(v, function(d) { return d.Longitude; }),
-								lat: d3.mean(v, function(d) { return d.Latitude; })
+								total: d3.sum(v, function(d){ return d.FATALITIES; }),
+								lon: d3.mean(v, function(d) { return d.LONGITUDE; }),
+								lat: d3.mean(v, function(d) { return d.LATITUDE; })
 
 							}})
 							.entries(datum);
 
+				console.log(grouped);
 				var max = d3.max(grouped, function(d) { return d.value.total; }),
 					min = d3.min(grouped, function(d) { return d.value.total; });
 				svg.selectAll("circle")
@@ -73,6 +76,7 @@
 								var killed = (d.value.total - min)/(max - min)
 									*50;
 								console.log(killed);
+								console.log(d.value.total);
 								return "" + killed + "px";
 							})
 							.attr("fill", "red")
