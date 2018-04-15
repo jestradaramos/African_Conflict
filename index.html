@@ -1,0 +1,87 @@
+<html>
+	<head>
+		<title>Suicide Attacks</title>
+		<script src='https://d3js.org/d3.v4.min.js'></script>
+		<script src='africa.js'></script>
+	</head>
+	<body>
+		<script>
+
+			var width = 2000,
+				height = 700;
+			var svg = d3.select('body')
+						.append('svg')
+						.attr('width', width)
+						.attr('height', height);
+			var g = svg.append('g');
+			var recProjection = d3.geoEquirectangular()
+						.scale(300)
+						.rotate([0, 0])
+						.center([0, 42.313])
+						.translate([width/2, height/4]);
+			var geoPath = d3.geoPath()
+						.projection(recProjection);
+			g.selectAll('path')
+				.data(map_json.features)
+				.enter()
+				.append('path')
+				.attr('fill','#ccc')
+				.attr('stroke', '#000')
+				.attr('d', geoPath);
+
+
+			d3.csv("join.csv", function(datum){
+				datum = datum.filter(function(d){
+					if (isNaN(d.Longitude)){
+						return false;
+					}
+					if (isNaN(d.Latitude)){
+						return false;
+					}
+
+					d.Longitude = parseFloat(d.Longitude);
+					d.Latitude = parseFloat(d.Latitude);
+					d.Killed = +d.Killed;
+					d.Wounded = +d.Wounded;
+					return true;
+				})
+
+				var grouped = d3.nest()
+							.key(function(d) { return d.Country; })
+							.rollup(function(v) { return {
+								total: d3.sum(v, function(d){ return d.Killed
+									+ d.Wounded; }),
+								lon: d3.mean(v, function(d) { return d.Longitude; }),
+								lat: d3.mean(v, function(d) { return d.Latitude; })
+
+							}})
+							.entries(datum);
+
+				var max = d3.max(grouped, function(d) { return d.value.total; }),
+					min = d3.min(grouped, function(d) { return d.value.total; });
+				svg.selectAll("circle")
+							.data(grouped).enter()
+							.append("circle")
+							.attr("cx", function(d) { 
+								console.log(d.value.total);
+								return recProjection([d.value.lon,
+									d.value.lat])[0]; })
+							.attr("cy", function(d) { 
+								return recProjection([d.value.lon,
+									d.value.lat])[1]; })
+							.attr("r", function(d) {
+								var killed = (d.value.total - min)/(max - min)
+									*50;
+								console.log(killed);
+								return "" + killed + "px";
+							})
+							.attr("fill", "red")
+							.attr("opacity", "0.5");
+				
+
+			});
+		
+		</script>
+	</body>
+
+</html>
