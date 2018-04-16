@@ -11,7 +11,7 @@
 		<script>
 			// Creating the African Map
 			var width = 900,
-				height = 500;
+				height = 600;
 			var svg = d3.select('#vis')
 						.append('svg')
 						.attr('width', width)
@@ -21,7 +21,7 @@
 						.scale(300)
 						.rotate([0, 0])
 						.center([0, 42.313])
-						.translate([width/2.5, height/15]);
+						.translate([width/2.5, 0]);
 			var geoPath = d3.geoPath()
 						.projection(recProjection);
 			g.selectAll('path')
@@ -56,7 +56,7 @@
 
 			var slider = svg.append("g")
 					.attr("class", "slider")
-					.attr("transform", "translate(" + 50 + "," + 10 + ")");
+					.attr("transform", "translate(" + 50 + "," + 460 +")");
 
 			slider.append("line")
 				.attr("class", "track")
@@ -94,8 +94,9 @@
 			var label = slider.append("text")  
 			    .attr("class", "label")
 			    .attr("text-anchor", "middle")
+				.attr("color", '#696969')
 			    .text(formatDate(startDate))
-			    .attr("transform", "translate(0," + (-25) + ")")
+			    .attr("transform", "translate(0," + (-25) + ")");
 	
 			
 			
