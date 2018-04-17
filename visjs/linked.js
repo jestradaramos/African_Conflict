@@ -1,37 +1,50 @@
-var height = 120, width = 150;
+var height = 300, width = 450;
 var data;
+var formatDateIntoYear = d3.time.format("%Y");
+var formatDate = d3.time.format("%Y");
+var parseDate = formatDate.parse("%m/%d/%y");
+var minDate = new Date(1997,0,1),
+	maxDate = new Date(2017,11,31);
 var margin = {top:10,bot:35, left:35, right:10};
-var yScale = d3.scaleLinear().domain([0,30]).range([height, 0]);
-var xScale = d3.scaleLinear().domain([1,7]).range([0,width]);
+var yScale = d3.scale.linear().domain([0,8000]).range([height, 0]);
+var xScale = d3.time.scale().domain([minDate,maxDate]).range([0,width]);
 
-var line = d3.line()
+var line = d3.svg.line()
 	.x(function(d){
-		return xScale(d.EVENT_DATE);
+
+		return xScale(formatDate.parse(d.EVENT_DATE));
 
 	}) 
 
-	.y(function(d) { return yScale(d.FATALITIES);});
-var area = d3.area()
+	.y(function(d) { return yScale(+d.counts);});
+var area = d3.svg.area()
 	.x(function(d) {
-		return xScale(d.EVENT_DATE);
+		return xScale(formatDate.parse(d.EVENT_DATE));
 	})
 	.y0(height)
-	.y1(function(d) { return yScale(d.forms); });
-var yAxis = d3.axisLeft()
+	.y1(function(d) { return yScale(+d.counts); });
+
+var yAxis = d3.svg.axis()
 	.scale(yScale)
-	.ticks(4)
+	.orient("left").ticks(4)
+	.outerTickSize(0)
+	.tickSubdivide(1)
 	.tickSize(-width);
-d3.csv("csv/african_conflicts.csv", function(datum) {
+
+var xAxis = d3.svg.axis()
+	.scale(xScale)
+	.orient("bottom").ticks(10)
+	.outerTickSize(0)
+	.tickSubdivide(1)
+	.tickSize(0);
+
+d3.csv("csv/linked.csv", function(datum) {
 	data = datum;
 	var grouped = d3.nest()
 			.key(function(d) { return d.EVENT_TYPE; })
 			.entries(data);
-
-	
-	var div = d3.select("#linked").selectAll(".chart").data(grouped);
-	
+	var div = d3.select("body").selectAll(".chart").data(grouped);
 	console.log(grouped);
-
 	div.enter()
 		.append("div")
 		.attr("class", "chart")
@@ -53,16 +66,13 @@ d3.csv("csv/african_conflicts.csv", function(datum) {
 		.attr("class", "line")
 		.attr("pointer-events", "none") 
 		.attr("d", function(d){
-			console.log(d);
-			console.log("hello");
 			return line(d.values);
 		});
-	console.log("Hello");
 	lines.append("path")
 		.attr("class", "area")
 		.attr("pointer-events", "none") 
 		.attr("d", function(d){
-			return area(d['history']);
+			return area(d.values);
 		});
 	lines.append("text")
 		.attr("class", "date")
@@ -70,15 +80,17 @@ d3.csv("csv/african_conflicts.csv", function(datum) {
 	lines.append("text")
 		.attr("class", "title")
 		.attr("text-anchor","middle")
-		.attr("y", height)
+		.attr("y", 0) //height)
 		.attr("dy", margin.bot /2 + 5)
 		.attr("x", width /2)
-		.text(function(d) { 
-			console.log(d);
-			console.log("Print");
-			return d['key'];});
+		.text(function(d) { return d.key;});
 	g.append("g")
 		.attr("class", "yaxis")
 		.call(yAxis);
+	g.append("g")
+		.attr("class", "xaxis")
+		.attr("transform", "translate(0," + height + ")")
+		.call(xAxis);
 
+	console.log(data);
 });
