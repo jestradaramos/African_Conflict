@@ -14,7 +14,9 @@ DS3001 Final Project
 
 **Jeffrey Estrada**:
 - Work on video player for african conflicts over time  
+- Work on Linked Small Multiples
 - [Slider](https://bl.ocks.org/officeofjane/47d2b0bfeecfcb41d2212d06d095c763)  
+- [Linked Mult](http://projects.flowingdata.com/tut/linked_small_multiples_demo/)
 
 **Micheal Truong**:
 - Make the basic web page to hold everything and have information for the site  
