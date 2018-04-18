@@ -33,8 +33,8 @@ var formatDateIntoYear = d3.timeFormat("%Y");
 var formatDate = d3.timeFormat("%b %Y");
 var parseDate = d3.timeParse("%m/%d/%y");
 
-var startDate = new Date("1987-11-01"),
-	endDate = new Date("2016-12-01");
+var startDate = new Date("1997-01-01"),
+	endDate = new Date("2017-12-31");
 
 // Slider
 
