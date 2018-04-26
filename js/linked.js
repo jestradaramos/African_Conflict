@@ -43,8 +43,7 @@ d3.csv("csv/linked.csv", function(datum) {
 	var grouped = d3.nest()
 			.key(function(d) { return d.EVENT_TYPE; })
 			.entries(data);
-	var div = d3.select("body").selectAll(".chart").data(grouped);
-	console.log(grouped);
+	var div = d3.select("#linked").selectAll(".chart").data(grouped);
 	div.enter()
 		.append("div")
 		.attr("class", "chart")
@@ -92,5 +91,4 @@ d3.csv("csv/linked.csv", function(datum) {
 		.attr("transform", "translate(0," + height + ")")
 		.call(xAxis);
 
-	console.log(data);
 });
