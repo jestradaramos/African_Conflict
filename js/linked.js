@@ -1,4 +1,4 @@
-var height = 300, width = 450;
+var height = 150, width = 350;
 var data;
 var formatDateIntoYear = d3.time.format("%Y");
 var formatDate = d3.time.format("%Y");
@@ -9,6 +9,7 @@ var margin = {top:10,bot:35, left:35, right:10};
 var yScale = d3.scale.linear().domain([0,8000]).range([height, 0]);
 var xScale = d3.time.scale().domain([minDate,maxDate]).range([0,width]);
 
+var format = d3.time.format("%Y");
 var line = d3.svg.line()
 	.x(function(d){
 
@@ -29,6 +30,7 @@ var yAxis = d3.svg.axis()
 	.orient("left").ticks(4)
 	.outerTickSize(0)
 	.tickSubdivide(1)
+	.tickFormat(d3.format(".0s"))
 	.tickSize(-width);
 
 var xAxis = d3.svg.axis()
@@ -36,6 +38,7 @@ var xAxis = d3.svg.axis()
 	.orient("bottom").ticks(10)
 	.outerTickSize(0)
 	.tickSubdivide(1)
+	.tickFormat(d3.time.format("%y"))
 	.tickSize(0);
 
 d3.csv("csv/linked.csv", function(datum) {
@@ -90,5 +93,64 @@ d3.csv("csv/linked.csv", function(datum) {
 		.attr("class", "xaxis")
 		.attr("transform", "translate(0," + height + ")")
 		.call(xAxis);
+
+	circle = lines.append("circle")
+	    .attr("r", 2.2)
+	    .attr("opacity", 0)
+	    .style("pointer-events", "none")
+	  
+	caption = lines.append("text")
+	    .attr("class", "caption")
+	    .attr("text-anchor", "middle")
+	    .style("pointer-events", "none")
+	    .attr("dy", -8)
+	  
+	curYear = lines.append("text")
+	    .attr("class", "year")
+	    .attr("text-anchor", "middle")
+	    .style("pointer-events", "none")
+	    .attr("dy", 13)
+	    .attr("y", height)
+	bisect = d3.bisector(function(d) {
+      return d.date;
+    }).left;
+    mouseover = function() {
+      circle.attr("opacity", 1.0);
+      d3.selectAll(".static_year").classed("hidden", true);
+      return mousemove.call(this);
+    };
+    mousemove = function() {
+      var date, index, year;
+      year = xScale.invert(d3.mouse(this)[0]).getFullYear();
+      date = format.parse('' + year);
+      index = 0;
+      circle.attr("cx", xScale(date)).attr("cy", function(c) {
+        index = bisect(c.values, date, 0, c.values.length - 1);
+        return yScale(yValue(c.values[index]));
+      });
+      caption.attr("x", xScale(date)).attr("y", function(c) {
+        return yScale(yValue(c.values[index]));
+      }).text(function(c) {
+        return yValue(c.values[index]);
+      });
+      return curYear.attr("x", xScale(date)).text(year);
+    };
+    mouseout = function() {
+      d3.selectAll(".static_year").classed("hidden", false);
+      circle.attr("opacity", 0);
+      caption.text("");
+      return curYear.text("");
+    };
+
+	g.append("rect")
+  		.attr("class", "background")
+  		.style("pointer-events", "all")
+  		.attr("width", width + margin.right )
+  		.attr("height", height)
+  		.on("mouseover", mouseover)
+  		.on("mousemove", mousemove)
+  		.on("mouseout", mouseout);
+
+
 
 });
