@@ -7,17 +7,17 @@
 // Creating the African Map
 var width = 900,
 	height = 600;
-var svg = d3.select('#vis')
+var svg = d3v4.select('#vis')
 	.append('svg')
 	.attr('width', width)
 	.attr('height', height);
 var g = svg.append('g');
-var recProjection = d3.geoEquirectangular()
+var recProjection = d3v4.geoEquirectangular()
 	.scale(300)
 	.rotate([0, 0])
 	.center([0, 42.313])
 	.translate([width/2.5, 0]);
-var geoPath = d3.geoPath()
+var geoPath = d3v4.geoPath()
 	.projection(recProjection);
 g.selectAll('path')
 	.data(map_json.features)
@@ -29,9 +29,9 @@ g.selectAll('path')
 
 // Date Stuff
 
-var formatDateIntoYear = d3.timeFormat("%Y");
-var formatDate = d3.timeFormat("%b %Y");
-var parseDate = d3.timeParse("%m/%d/%y");
+var formatDateIntoYear = d3v4.timeFormat("%Y");
+var formatDate = d3v4.timeFormat("%b %Y");
+var parseDate = d3v4.timeParse("%m/%d/%y");
 
 var startDate = new Date("1997-01-01"),
 	endDate = new Date("2017-12-31");
@@ -42,9 +42,9 @@ var moving = false;
 var currentValue = 0;
 var targetValue = width - 150
 
-var playButton = d3.select("#play-button");
+var playButton = d3v4.select("#play-button");
 
-var x = d3.scaleTime()
+var x = d3v4.scaleTime()
 	.domain([startDate, endDate])
 	.range([0, targetValue])
 	.clamp(true);
@@ -63,10 +63,10 @@ slider.append("line")
 	.select(function() { return
 		this.parentNode.appendChild(this.cloneNode(true)); })
 	.attr("class", "track-overlay")
-	.call(d3.drag()
+	.call(d3v4.drag()
 		.on("start.interrupt" , function() {slider.interrupt();})
 		.on("start drag", function() {
-			currentValue = d3.event.x;
+			currentValue = d3v4.event.x;
 			update(x.invert(currentValue));
 		})
 	);
@@ -97,7 +97,7 @@ var label = slider.append("text")
 
 
 // Plotting the points 
-d3.csv("/csv/african_conflicts.csv", function(datum){
+d3v4.csv("/csv/african_conflicts.csv", function(datum){
 	datum = datum.filter(function(d){
 		if (isNaN(d.LONGITUDE)){
 			return false;
@@ -116,22 +116,22 @@ d3.csv("/csv/african_conflicts.csv", function(datum){
 		return true;
 	})
 
-	var grouped = d3.nest()
+	var grouped = d3v4.nest()
 		.key(function(d) { return d.COUNTRY; })
 		.rollup(function(v) { return {
-			total: d3.sum(v, function(d){ return d.FATALITIES; }),
-			lon: d3.mean(v, function(d) { return d.LONGITUDE; }),
-			lat: d3.mean(v, function(d) { return d.LATITUDE; })
+			total: d3v4.sum(v, function(d){ return d.FATALITIES; }),
+			lon: d3v4.mean(v, function(d) { return d.LONGITUDE; }),
+			lat: d3v4.mean(v, function(d) { return d.LATITUDE; })
 
 		}})
 		.entries(datum);
 
-	var max = d3.max(grouped, function(d) { return d.value.total; }),
-		min = d3.min(grouped, function(d) { return d.value.total; });
+	var max = d3v4.max(grouped, function(d) { return d.value.total; }),
+		min = d3v4.min(grouped, function(d) { return d.value.total; });
 
 	playButton
 		.on("click", function(){
-			var button = d3.select(this);
+			var button = d3v4.select(this);
 			if (button.text() == "Pause"){
 				moving = false;
 				clearInterval(timer);
