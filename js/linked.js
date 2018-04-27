@@ -5,7 +5,7 @@ var formatDate = d3.time.format("%Y");
 var parseDate = formatDate.parse("%m/%d/%y");
 var minDate = new Date(1997,0,1),
 	maxDate = new Date(2017,11,31);
-var margin = {top:10,bot:35, left:35, right:10};
+var margin = {top:30,bot:45, left:35, right:10};
 var yScale = d3.scale.linear().domain([0,8000]).range([height, 0]);
 var xScale = d3.time.scale().domain([minDate,maxDate]).range([0,width]);
 
@@ -35,7 +35,7 @@ var yAxis = d3.svg.axis()
 
 var xAxis = d3.svg.axis()
 	.scale(xScale)
-	.orient("bottom").ticks(10)
+	.orient("bottom").ticks(0)
 	.outerTickSize(0)
 	.tickSubdivide(1)
 	.tickFormat(d3.time.format("%y"))
@@ -57,12 +57,13 @@ d3.csv("csv/linked.csv", function(datum) {
 		.attr("height", height + margin.bot + margin.top);
 
 	var g = svg.select("g")
-		.attr("transform", "translate(" + margin.left + "," + margin.top +")");
+		.attr("transform", "translate(" + margin.left + "," + margin.top  +")");
+
 	g.append("rect")
 		.attr("class", "background")
 		.style("pointer-events", "all")
 		.attr("width", width + margin.right)
-		.attr("height", height + margin.top);
+		.attr("height", height + margin.top );
 	var lines= g.append("g");
 	lines.append("path")
 		.attr("class", "line")
@@ -77,21 +78,21 @@ d3.csv("csv/linked.csv", function(datum) {
 			return area(d.values);
 		});
 	lines.append("text")
-		.attr("class", "date")
-		.attr("text-anchor", "start");
-	lines.append("text")
 		.attr("class", "title")
 		.attr("text-anchor","middle")
-		.attr("y", 0) //height)
-		.attr("dy", margin.bot /2 + 5)
+		.attr("y", height - margin.top + 45) //height)
+		.attr("dy", margin.bot /2 )
 		.attr("x", width /2)
 		.text(function(d) { return d.key;});
+	lines.append("text")
+		.attr("class", "date")
+		.attr("text-anchor", "start");
 	g.append("g")
 		.attr("class", "yaxis")
 		.call(yAxis);
 	g.append("g")
 		.attr("class", "xaxis")
-		.attr("transform", "translate(0," + height + ")")
+		.attr("transform", "translate(10," + height + ")")
 		.call(xAxis);
 
 	circle = lines.append("circle")
@@ -112,7 +113,7 @@ d3.csv("csv/linked.csv", function(datum) {
 	    .attr("dy", 13)
 	    .attr("y", height)
 	bisect = d3.bisector(function(d) {
-      return d.date;
+      return d['EVENT_DATE'];
     }).left;
     mouseover = function() {
       circle.attr("opacity", 1.0);
@@ -125,14 +126,14 @@ d3.csv("csv/linked.csv", function(datum) {
       date = format.parse('' + year);
       index = 0;
       circle.attr("cx", xScale(date)).attr("cy", function(c) {
-        index = bisect(c.values, date, 0, c.values.length - 1);
-        return yScale(yValue(c.values[index]));
+        index = bisect(c.values, formatDate(date), 0, c.values.length - 1);
+        return yScale((c.values[index].counts));
       });
-      caption.attr("x", xScale(date)).attr("y", function(c) {
-        return yScale(yValue(c.values[index]));
-      }).text(function(c) {
-        return yValue(c.values[index]);
-      });
+      caption.attr("x", xScale(date))
+			.attr("y", function(c) {
+        		return yScale((c.values[index].counts)); })
+			.text(function(c) {
+        		return (c.values[index].counts);});
       return curYear.attr("x", xScale(date)).text(year);
     };
     mouseout = function() {
