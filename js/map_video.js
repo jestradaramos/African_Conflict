@@ -30,8 +30,8 @@ g.selectAll('path')
 // Date Stuff
 
 var formatDateIntoYear = d3v4.timeFormat("%Y");
-var formatDate = d3v4.timeFormat("%b %Y");
-var parseDate = d3v4.timeParse("%m/%d/%y");
+var formatDate = d3v4.timeFormat("%m/%d/%Y");
+var parseDate = d3v4.timeParse("%m/%d/%Y");
 
 var startDate = new Date("1997-01-01"),
 	endDate = new Date("2017-12-31");
@@ -97,7 +97,7 @@ var label = slider.append("text")
 
 
 // Plotting the points 
-d3v4.csv("/csv/african_conflicts.csv", function(datum){
+d3v4.csv("/csv/map.csv", function(datum){
 	datum = datum.filter(function(d){
 		if (isNaN(d.LONGITUDE)){
 			return false;
@@ -109,13 +109,14 @@ d3v4.csv("/csv/african_conflicts.csv", function(datum){
 
 			return false;
 		}
-
+		d.EVENT_DATE = (d.EVENT_DATE);
 		d.LONGITUDE = parseFloat(d.LONGITUDE);
 		d.LATITUDE = parseFloat(d.LATITUDE);
 		d.FATALITIES = +d.FATALITIES;
 		return true;
 	})
 
+	/*
 	var grouped = d3v4.nest()
 		.key(function(d) { return d.COUNTRY; })
 		.rollup(function(v) { return {
@@ -125,9 +126,11 @@ d3v4.csv("/csv/african_conflicts.csv", function(datum){
 
 		}})
 		.entries(datum);
-
-	var max = d3v4.max(grouped, function(d) { return d.value.total; }),
-		min = d3v4.min(grouped, function(d) { return d.value.total; });
+	*/
+		
+	//console.log(grouped);
+	var max = d3v4.max(datum, function(d) { return d.FATALITIES; }),
+		min = d3v4.min(datum, function(d) { return d.FATALITIES; });
 
 	playButton
 		.on("click", function(){
@@ -144,23 +147,25 @@ d3v4.csv("/csv/african_conflicts.csv", function(datum){
 			console.log("Slider Moving: " + moving);
 		})
 
+	/*	
 	svg.selectAll("circle")
-		.data(grouped).enter()
+		.data(datum).enter()
 		.append("circle")
 		.attr("cx", function(d) { 
-			return recProjection([d.value.lon,
-				d.value.lat])[0]; })
+			return recProjection([d.LONGITUDE,
+				d.LATITUDE])[0]; })
 		.attr("cy", function(d) { 
-			return recProjection([d.value.lon,
-				d.value.lat])[1]; })
+			return recProjection([d.LONGITUDE,
+				d.LATITUDE])[1]; })
 		.attr("r", function(d) {
-			var killed = (d.value.total - min)/(max - min)
+			var killed = (d.FATALITIES - min)/(max - min)
 				*50;
 			return "" + killed + "px";
 		})
 		.attr("fill", "red")
 		.attr("opacity", "0.5");
-
+	
+*/
 	function step() {
 		update(x.invert(currentValue));
 		currentValue = currentValue + (targetValue/151);
@@ -173,7 +178,46 @@ d3v4.csv("/csv/african_conflicts.csv", function(datum){
 			console.log("Slider moving: " + moving);
 		}
 	}
+
+	function drawPlot(data) {
+  	var locations = svg.selectAll("circle")
+	    .data(data);
+	
+	  // if filtered dataset has more circles than already existing, transition new ones in
+	  locations.enter()
+	    .append("circle")
+	    .attr("class", "circle")
+		.attr("cx", function(d) { 
+			return recProjection([d.LONGITUDE,
+				d.LATITUDE])[0]; })
+		.attr("cy", function(d) { 
+			return recProjection([d.LONGITUDE,
+				d.LATITUDE])[1]; })
+		.attr("r", function(d) {
+			var killed = (d.FATALITIES - min)/(max - min)
+				*50;
+			return "" + killed + "px";
+		})
+
+	    //.attr("cx", function(d) { return x(d.date); })
+	    //.attr("cy", height/2)
+	    //.style("fill", function(d) { return d3.hsl(d.date/1000000000, 0.8, 0.8)})
+	    //.style("stroke", function(d) { return d3.hsl(d.date/1000000000, 0.7, 0.7)})
+	    .style("opacity", 0.5)
+	    .attr("r", 8)
+	      .transition()
+	      .duration(400)
+	      .attr("r", 25)
+	        .transition()
+	        .attr("r", 8);
+	
+	  // if filtered dataset has less circles than already existing, remove excess
+	  locations.exit()
+	    .remove();
+	}
+
 	function update(h) {
+		console.log(h);
 		// update position and text of label according to slider scale
 		handle.attr("cx", x(h));
 		label
@@ -181,9 +225,11 @@ d3v4.csv("/csv/african_conflicts.csv", function(datum){
 			.text(formatDate(h));
 
 		// filter data set and redraw plot
-		// var newData = dataset.filter(function(d) {
-		// return d.date < h;
-		// })
-		// drawPlot(newData);
+		var newData = datum.filter(function(d) {
+			
+		return (d.EVENT_DATE) < h;
+		})
+		console.log(newData);
+		drawPlot(newData);
 	}
 });
