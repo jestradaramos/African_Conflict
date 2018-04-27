@@ -7,11 +7,18 @@
 	flex-wrap: wrap;
 }
 .linked-row{
-	background:#efe2ba;
+	background:#daad86;
+	height:50%;
+}
+
+.map-row{
+	background:#659dbd;
+	height:50%;
 }
 
 body, html {
     height: 100%;
+	font-family:'Oswald', sans-serif;
 }
 
 /* The hero image */
@@ -30,6 +37,7 @@ body, html {
     url(images/students.jpg);
     /* Set a specific height */
     height: 100%;
+	width: 100%;
 
     /* Position and center the image to scale nicely on all screens */
     background-position: center;
@@ -37,18 +45,20 @@ body, html {
     background-size: cover;
     position: relative;
 }
-h1 {
-	font-size:100px;
-}
-p {
-	font-size: 55px;
-}
 /* Place text in the middle of the image */
 .hero-text {
     text-align: center;
     position: absolute;
-    top: 50%;
+    top: 65%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
+}
+
+#hero-title {
+	font-size:100px;
+}
+
+#hero-sub {
+	font-size:55px;
 }

@@ -148,7 +148,6 @@ d3v4.csv("/csv/african_conflicts.csv", function(datum){
 		.data(grouped).enter()
 		.append("circle")
 		.attr("cx", function(d) { 
-			console.log(d.value.total);
 			return recProjection([d.value.lon,
 				d.value.lat])[0]; })
 		.attr("cy", function(d) { 
@@ -157,8 +156,6 @@ d3v4.csv("/csv/african_conflicts.csv", function(datum){
 		.attr("r", function(d) {
 			var killed = (d.value.total - min)/(max - min)
 				*50;
-			console.log(killed);
-			console.log(d.value.total);
 			return "" + killed + "px";
 		})
 		.attr("fill", "red")
