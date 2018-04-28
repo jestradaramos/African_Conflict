@@ -109,7 +109,7 @@ d3v4.csv("/csv/map.csv", function(datum){
 
 			return false;
 		}
-		d.EVENT_DATE = (d.EVENT_DATE);
+		d.EVENT_DATE = d3v4.timeFormat("%m/%d/%Y")(d.EVENT_DATE);
 		d.LONGITUDE = parseFloat(d.LONGITUDE);
 		d.LATITUDE = parseFloat(d.LATITUDE);
 		d.FATALITIES = +d.FATALITIES;
@@ -217,7 +217,7 @@ d3v4.csv("/csv/map.csv", function(datum){
 	}
 
 	function update(h) {
-		console.log("Date:" + formatDate(h));
+		console.log("Date:" + h);
 		// update position and text of label according to slider scale
 		handle.attr("cx", x(h));
 		label
@@ -227,8 +227,8 @@ d3v4.csv("/csv/map.csv", function(datum){
 		// filter data set and redraw plot
 		var newData = datum.filter(function(d) {
 			//console.log(d.EVENT_DATE.substr(d.EVENT_DATE.length -4));
-		return (d.EVENT_DATE.substr(d.EVENT_DATE.length -4)) < h;
-		})
+		return d.EVENT_DATE > (h);
+		});
 		console.log(newData);
 		drawPlot(newData);
 	}
