@@ -67,12 +67,40 @@
 				<div id='linked'></div>
 			</div>	
 		</div>
-		<div class = "row">
+		<div class = "row line-row">
+			<div class='col-md-6'>
+				<div class="chart-wrapper" id="chart-line1"></div>
+			</div>
 			
 		</div>
 		<script src='js/map_video.js'></script>
 		<script src='js/linked.js'></script>
 		<script src='js/style.js'></script>
+		<script type='text/javascript'>
+    		d3.csv('/csv/multiline_data.csv', function(error, data) {
+    		data.forEach(function (d) {
+    		    d.year = +d.year;
+    		    d.variableA = +d.variableA;
+    		    d.variableB = +d.variableB;
+    		    d.variableC = +d.variableC;
+    		    d.variableD = +d.variableD;
+    		    d.variableE = +d.variableE;
+    		});
+
+    		var chart = makeLineChart(data, 'year', {
+    		    'Civilians (Burundi)': {column: 'variableA'},
+    		    'Civilians (Democratic Republic of Congo)': {column: 'variableB'},
+    		    'Military Forces of Democratic Republic of Congo (2001-)': {column: 'variableC'},
+    		    'Protesters (Egypt)': {column: 'variableD'},
+    		    'UNITA: National Union for the Total Independence of Angola': {column: 'variableE'}
+    		}, {xAxis: 'Years', yAxis: 'Amount'});
+    		chart.bind("#chart-line1");
+    		chart.render();
+
+			});
+			
+		</script>
+		<script src='js/multiline.js'></script>
 	</body>
 	
 </html>

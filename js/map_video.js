@@ -31,7 +31,7 @@ g.selectAll('path')
 
 var formatDateIntoYear = d3v4.timeFormat("%Y");
 var formatDate = d3v4.timeFormat("%m/%d/%Y");
-var parseDate = d3v4.timeParse("%m/%d/%Y");
+var parseDate = d3v4.timeParse("%m/%d/%y");
 
 var startDate = new Date("1997-01-01"),
 	endDate = new Date("2017-12-31");
@@ -217,7 +217,7 @@ d3v4.csv("/csv/map.csv", function(datum){
 	}
 
 	function update(h) {
-		console.log(h);
+		console.log("Date:" + formatDate(h));
 		// update position and text of label according to slider scale
 		handle.attr("cx", x(h));
 		label
@@ -226,8 +226,8 @@ d3v4.csv("/csv/map.csv", function(datum){
 
 		// filter data set and redraw plot
 		var newData = datum.filter(function(d) {
-			
-		return (d.EVENT_DATE) < h;
+			//console.log(d.EVENT_DATE.substr(d.EVENT_DATE.length -4));
+		return (d.EVENT_DATE.substr(d.EVENT_DATE.length -4)) < h;
 		})
 		console.log(newData);
 		drawPlot(newData);
