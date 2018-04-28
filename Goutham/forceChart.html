@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="main.css">
         <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+        <script src='https://d3js.org/d3.v3.min.js'></script>
     <style>
             path.link {
                 fill: none;
@@ -28,10 +29,8 @@
     </head>
     <body>
         <script>
-            // var w = 800;
-            // var h = 450;
-            var w = 800*10;
-            var h = 450*10;
+            var w = 800;
+            var h = 450;
             var margin = {
                 top: 20,
                 bottom: 20,
@@ -65,7 +64,7 @@ function redraw() {
 
             var colorScale = d3.scale.category20();
 
-            d3.csv("acForce.csv", function (error, links) {
+            d3.csv("test.csv", function (error, links) {
                 var nodes = {};
 
                 links.forEach(function (link) {
