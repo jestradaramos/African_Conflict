@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<title>Suicide Attacks</title>
+		<script src='https://d3js.org/d3.v4.min.js'></script>
+		<script src='africa.js'></script>
+	</head>
+	<style>
+		.label { font-size: 10px; }
+		.line { fill: none; stroke-width: 1.4px; stroke: #74736c;}
+		.area { fill: #cec6b9; }
+		.background {fill: none;}
+		.chart {
+			float: left;
+			padding-right: 5px;
+			padding-bottom: 5px;
+			padding-top: 0;
+			padding-left: 0;
+		}
+		.yaxis path,
+		.yaxis line {
+			fill:none;
+			stroke: #fff;
+			opacity: 0.5;
+			shape-rendering: crispEdges;
+		}
+	svg { border: solid 0.5px #333; margin: 5px;}
+	</style>
+	<body>
+		<div id='vis'>
+			<button id='play-button'>Play</button>
+		</div>
+
+		<div id='linked'>
+
+		</div>
+		<script src='visjs/map_video.js'></script>
+	</body>
+
+</html>

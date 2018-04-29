@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <title>Stacked Bar | delimited</title>
+    <style>
+      body {
+        font: 9px sans-serif;
+        color: #121401;
+      }
+      .axis path,
+      .axis line {
+        fill: none;
+        stroke: #121401;
+        stroke-width: 2px;
+        shape-rendering: crispEdges;
+      }
+    </style>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-45101494-1']);
+    _gaq.push(['_setDomainName', 'delimited.io']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+  </head>
+  <body>
+    <h2 style="padding-left:60px;">Fatality Count by Year and Actor Type</h2>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+      var margin = {top: 20, right: 55, bottom: 30, left: 80},
+          width  = 1000 - margin.left - margin.right,
+          height = 500  - margin.top  - margin.bottom;
+
+      var x = d3.scale.ordinal()
+          .rangeRoundBands([0, width], .1);
+
+      var y = d3.scale.linear()
+          .rangeRound([height, 0]);
+
+      var xAxis = d3.svg.axis()
+          .scale(x)
+          .orient("bottom");
+
+      var yAxis = d3.svg.axis()
+          .scale(y)
+          .orient("left");
+
+      var color = d3.scale.ordinal()
+          .range(["#001c9c","#101b4d","#475003","#9c8305","#d3c47c"]);
+
+      var svg = d3.select("body").append("svg")
+          .attr("width",  width  + margin.left + margin.right)
+          .attr("height", height + margin.top  + margin.bottom)
+        .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      d3.csv("data.csv", function (error, data) {
+
+        var labelVar = 'Year';
+        var varNames = d3.keys(data[0]).filter(function (key) { return key !== labelVar;});
+        color.domain(varNames);
+
+        data.forEach(function (d) {
+          var y0 = 0;
+          d.mapping = varNames.map(function (name) { 
+            return {
+              name: name,
+              label: d[labelVar],
+              y0: y0,
+              y1: y0 += +d[name]
+            };
+          });
+          d.total = d.mapping[d.mapping.length - 1].y1;
+        });
+
+        x.domain(data.map(function (d) { return d.Year; }));
+        y.domain([0, d3.max(data, function (d) { return d.total; })]);
+
+        svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis);
+
+        svg.append("g")
+            .attr("class", "y axis")
+            .call(yAxis)
+          .append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 6)
+            .attr("dy", ".71em")
+            .style("text-anchor", "end")
+            .text("Number of Fatalities");
+
+        var selection = svg.selectAll(".series")
+            .data(data)
+          .enter().append("g")
+            .attr("class", "series")
+            .attr("transform", function (d) { return "translate(" + x(d.Year) + ",0)"; });
+
+        selection.selectAll("rect")
+          .data(function (d) { return d.mapping; })
+        .enter().append("rect")
+          .attr("width", x.rangeBand())
+          .attr("y", function (d) { return y(d.y1); })
+          .attr("height", function (d) { return y(d.y0) - y(d.y1); })
+          .style("fill", function (d) { return color(d.name); })
+          .style("stroke", "grey")
+          .on("mouseover", function (d) { showPopover.call(this, d); })
+          .on("mouseout",  function (d) { removePopovers(); })
+
+        var legend = svg.selectAll(".legend")
+            .data(varNames.slice().reverse())
+          .enter().append("g")
+            .attr("class", "legend")
+            .attr("transform", function (d, i) { return "translate(55," + i * 20 + ")"; });
+
+        legend.append("rect")
+            .attr("x", width - 10)
+            .attr("width", 10)
+            .attr("height", 10)
+            .style("fill", color)
+            .style("stroke", "grey");
+
+        legend.append("text")
+            .attr("x", width - 20)
+            .attr("y", 6)
+            .attr("dy", ".35em")
+            .style("text-anchor", "end")
+            .text(function (d) { return d; });
+
+        function removePopovers () {
+          $('.popover').each(function() {
+            $(this).remove();
+          }); 
+        }
+
+        function showPopover (d) {
+          $(this).popover({
+            title: d.name,
+            placement: 'auto top',
+            container: 'body',
+            trigger: 'manual',
+            html : true,
+            content: function() { 
+              return "Year: " + d.label + 
+                     "<br/>Conflicts: " + d3.format(",")(d.value ? d.value: d.y1 - d.y0); }
+          });
+          $(this).popover('show')
+        }
+      });
+    </script>
+  </body>
+</html>
