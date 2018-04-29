@@ -35,15 +35,46 @@
 			shape-rendering: crispEdges;
 		}
 	svg { border: solid 0.5px #333; margin: 5px;}
+
+	#learn-more.semi-transparent-button, #see-full-list.semi-transparent-button, .semi-transparent-button{
+		display: block;
+		box-sizing: border-box;
+		margin: 25px auto;
+		padding: 8px;
+		width: 12em;
+		background-color: rgba(200, 200, 200, 0.2);
+		border-radius: 2px;
+		border-color: rgba(200, 200, 200, 0.3);
+		color: #fff;
+		text-align: center;
+		text-decoration: none;
+		letter-spacing: 1px;
+		transition: all 0.3s ease-out;
+		border: 1px solid rgba(200, 200, 200, 0.3);
+		text-decoration-color: white;
+	}
+
+	#learn-more.semi-transparent-button:hover, #see-full-list.semi-transparent-button:hover, .semi-transparent-button:hover{
+		border: 1px solid white;
+	}
+
+
+
 	</style>
 	<body>
 		<div class="hero-image">
   			<div class="hero-text">
   				<h1 class='text-center' id='hero-title'>African Conflicts</h1>
   				<p class='text-center'id='hero-sub'>For the past 20 years</p>
-    			<button>Go!</button>
+					<div id="main-menu">
+		        <a href="#start"id = "learn-more" class="cd-btn semi-transparent-button" role="button">Learn More</a>
+		      </div>
   			</div>
 		</div>
+
+		<!-- When user clicks the learn more button, webpage moves to this start div -->
+		<div id="start"></div>
+
 		<div class="row map-row">
 			<div class="col-md-6">
 				<div class = 'center-block' id='vis'>
@@ -108,16 +139,19 @@ fatalities is a positive </p>
 
 		</script>
 		<script src='js/multiline.js'></script>
+		<script type="text/javascript">
+		$(function() {
+			$('#main-menu a').bind('click',function(event){
+				var $anchor = $(this);
+				$('html, body').stop().animate({
+					scrollTop: $($anchor.attr('href')).offset().top
+				}, 1500,'easeInOutExpo');
+				event.preventDefault();
+			});
+		});
+		</script>
+
+
 	</body>
 
 </html>
-<!-- <style>
-</style>
-
-<body>
-  <h1>African Conflicts</h1>
-</body>
-
-<script>
-  console.log(d3); // test if d3 is loaded
-</script> -->
