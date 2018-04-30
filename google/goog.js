@@ -22,10 +22,10 @@ markers1 = map;
  * Function to init map
  */
 function initialize() {
-  var center = new google.maps.LatLng(45.662477, 18.022074);
+  var center = new google.maps.LatLng(8.662477, 28.022074);
   var mapOptions = {
     zoom: 5,
-    center: new google.maps.LatLng(45.662477, 18.022074),
+    center: new google.maps.LatLng(8.662477, 28.022074),
     mapTypeId: 'roadmap',
   };
 
