@@ -14,6 +14,20 @@
         stroke-width: 2px;
         shape-rendering: crispEdges;
       }
+
+      .center{
+        text-align: center;
+      }
+
+
+      svg {
+        position: relative;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        transform: translateX(-50%);
+    }
+
     </style>
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script type="text/javascript">
@@ -29,7 +43,7 @@
     </script>
   </head>
   <body>
-    <h2 style="padding-left:60px;">Fatality Count by Year and Actor Type</h2>
+    <h2 class="center" style="padding-left:60px;">Fatality Count by Year and Actor Type</h2>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -74,7 +88,7 @@
 
         data.forEach(function (d) {
           var y0 = 0;
-          d.mapping = varNames.map(function (name) { 
+          d.mapping = varNames.map(function (name) {
             return {
               name: name,
               label: d[labelVar],
@@ -143,7 +157,7 @@
         function removePopovers () {
           $('.popover').each(function() {
             $(this).remove();
-          }); 
+          });
         }
 
         function showPopover (d) {
@@ -153,8 +167,8 @@
             container: 'body',
             trigger: 'manual',
             html : true,
-            content: function() { 
-              return "Year: " + d.label + 
+            content: function() {
+              return "Year: " + d.label +
                      "<br/>Conflicts: " + d3.format(",")(d.value ? d.value: d.y1 - d.y0); }
           });
           $(this).popover('show')

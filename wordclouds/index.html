@@ -3,11 +3,21 @@
 <title>W3.CSS</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+.w3-container {
+  text-align: center;
+}
+
+</style>
 <body>
 
 <div class="w3-container">
-  <h2>Slideshow Caption</h2>
-  <p>Add some awesome words here woot woot!.</p>
+  <h2>African Conflict Word Cloud Slideshow</h2>
+  <p>
+    Using the comments for each instance we constructed a word cloud based on the most frequent words for each year of our data set. </br>
+
+    These word clouds show the most used words for each year which can tell us a summary of what most likely happened.
+  </p>
 </div>
 
 <div class="w3-content w3-display-container">
@@ -175,12 +185,12 @@ function plusDivs(n) {
 function showDivs(n) {
   var i;
   var x = document.getElementsByClassName("mySlides");
-  if (n > x.length) {slideIndex = 1}    
+  if (n > x.length) {slideIndex = 1}
   if (n < 1) {slideIndex = x.length}
   for (i = 0; i < x.length; i++) {
-     x[i].style.display = "none";  
+     x[i].style.display = "none";
   }
-  x[slideIndex-1].style.display = "block";  
+  x[slideIndex-1].style.display = "block";
 }
 </script>
 

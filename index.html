@@ -1,5 +1,6 @@
 <html>
 <head>
+	<meta charset="UTF-8"/>
 	<title>Conflicts in Africa</title>
 	<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<script src="http://code.jquery.com/jquery-migrate-3.0.1.min.js" integrity="sha256-F0O1TmEa4I8N24nY0bya59eP6svWcshqX1uzwaWC4F4=" crossorigin="anonymous"></script>
@@ -15,6 +16,7 @@
 	<script src="https://d3js.org/d3.v3.min.js"></script>
 	<script src='js/africa.js'></script>
 </head>
+
 <style>
 .label { font-size: 10px; }
 .line { fill: none; stroke-width: 1.4px; stroke: #74736c;}
@@ -58,8 +60,38 @@ svg { border: solid 0.5px #333; margin: 5px;}
 	border: 1px solid white;
 }
 
+#play-button {
+	bottom: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	position: absolute;
+	left: 44%;
+	margin: 25px auto;
+	padding: 8px;
+	width: 12em;
+	border-radius: 2px;
+	border-color: rgba(200, 200, 200, 0.3);
+	text-align: center;
+	cursor: pointer;
+}
+
+#linked {
+	display: block;
+	margin-left: 50px;
+	margin-right: auto;
+}
+
+object{
+    background-color: #daad86;
+    margin-top: 10px;
+    height: 70vh;
+		width:100%;
+		height: 100%;
+}
+
 
 </style>
+
 <body>
 	<div class="hero-image">
 		<div class="hero-text">
@@ -74,13 +106,11 @@ svg { border: solid 0.5px #333; margin: 5px;}
 	<!-- When user clicks the learn more button, webpage moves to this start div -->
 	<div id="start"></div>
 
-	<div class="row map-row">
-		<div class="col-md-6">
-			<div class = 'center-block' id='vis'>
-				<button id='play-button'>Play</button>
-			</div>
-		</div>
-		<div class="col">
+	<!-- <div class="row"> -->
+	<div style="background-color:#2980B9">
+
+		<br><br>
+		<div class="col top">
 			<h2 class="text-center">Conflicts Over Time</h2>
 			<p>These graphs display the total count of conflicts per year and the total count
 				of fatalities per year respectively.
@@ -93,64 +123,105 @@ svg { border: solid 0.5px #333; margin: 5px;}
 				stability of the African Conflict is tumultuous, but the drastic reduction in
 				fatalities is a positive </p>
 			</div>
-			<br>
-		</div>
 
-
-		<div class="row linked-row">
-			<div class="col">
-				<h2 class="text-center">Conflicts by Type Over Time</h2>
-				<p>We should add some stuff here</p>
-			</div>
-			<div class="col-md-6">
+			<div class="col-md-12">
 				<div id='linked'></div>
 			</div>
-		</div>
-		<div class = "row line-row">
-			<div class='col-md-6'>
-				<div class="chart-wrapper" id="chart-line1"></div>
-			</div>
+		</br>
+	</br>
+</div>
 
-		</div>
-		<script src='js/map_video.js'></script>
-		<script src='js/linked.js'></script>
-		<script src='js/style.js'></script>
-		<script type='text/javascript'>
-		d3.csv('/csv/multiline_data.csv', function(error, data) {
-			data.forEach(function (d) {
-				d.year = +d.year;
-				d.variableA = +d.variableA;
-				d.variableB = +d.variableB;
-				d.variableC = +d.variableC;
-				d.variableD = +d.variableD;
-				d.variableE = +d.variableE;
-			});
-			var chart = makeLineChart(data, 'year', {
-				'Civilians (Burundi)': {column: 'variableA'},
-				'Civilians (Democratic Republic of Congo)': {column: 'variableB'},
-				'Military Forces of Democratic Republic of Congo (2001-)': {column: 'variableC'},
-				'Protesters (Egypt)': {column: 'variableD'},
-				'UNITA: National Union for the Total Independence of Angola': {column: 'variableE'}
-			}, {xAxis: 'Years', yAxis: 'Amount'});
-			chart.bind("#chart-line1");
-			chart.render();
-		});
-
-		</script>
-		<script src='js/multiline.js'></script>
-		<script type="text/javascript">
-		$(function() {
-			$('#main-menu a').bind('click',function(event){
-				var $anchor = $(this);
-				$('html, body').stop().animate({
-					scrollTop: $($anchor.attr('href')).offset().top
-				}, 1500,'easeInOutExpo');
-				event.preventDefault();
-			});
-		});
-		</script>
+<!-- <div class = 'center' id='vis'>
+	<h2 class="text-center">African Conflict Map</h2>
+	<button id='play-button'>Play</button>
+</div>
+ -->
 
 
-	</body>
+<div id="force">
+	<div class="col-md-12">
+	<object type="text/html" data="Goutham/forceDir.html"></object>
+	</div>
+</div>
+<div id="Conflict">
+	<object type="text/html" data="wordclouds/index.html"></object>
+</div>
+<div id="fatalities">
+	<object type="text/html" data="Zach/stacked_conflicts/index.html"></object>
+</div>
+<div id="word">
+	<object type="text/html" data="Zach/stacked_fatalities/index.html"></object>
+</div>
 
-	</html>
+
+<div style="background-color:#daad86">
+	<!-- <div class="col top">
+	<br>
+	<h2 class="text-center">Force Direct Diagram</h2>
+
+	<div class="legend1">
+	<div class="legend1"> <p class="typeName"><span class="key-dot type1"></span>Government or mutinous force</p> </div>
+	<div class="legend1"> <p class="typeName"><span class="key-dot type2"></span>Rebel force</p> </div>
+	<div class="legend1"> <p class="typeName"><span class="key-dot type3"></span>Political militia</p> </div>
+	<div class="legend1"> <p class="typeName"><span class="key-dot type4"></span>Ethnic militia</p> </div>
+	<div class="legend1"> <p class="typeName"><span class="key-dot type5"></span>Rioters</p> </div>
+	<div class="legend1"> <p class="typeName"><span class="key-dot type6"></span>Protesters</p> </div>
+	<div class="legend1"> <p class="typeName"><span class="key-dot type7"></span>Civilians</p> </div>
+	<div class="legend1"> <p class="typeName"><span class="key-dot type8"></span>Outside/external force</p> </div>
+</div> -->
+
+<div id='linked'></div>
+</div>
+
+</div>
+
+<script src='js/map_video.js'></script>
+<script src='js/linked.js'></script>
+<script src='js/style.js'></script>
+
+
+<script type='text/javascript'>
+d3.csv('/csv/multiline_data.csv', function(error, data) {
+	data.forEach(function (d) {
+		d.year = +d.year;
+		d.variableA = +d.variableA;
+		d.variableB = +d.variableB;
+		d.variableC = +d.variableC;
+		d.variableD = +d.variableD;
+		d.variableE = +d.variableE;
+	});
+	var chart = makeLineChart(data, 'year', {
+		'Civilians (Burundi)': {column: 'variableA'},
+		'Civilians (Democratic Republic of Congo)': {column: 'variableB'},
+		'Military Forces of Democratic Republic of Congo (2001-)': {column: 'variableC'},
+		'Protesters (Egypt)': {column: 'variableD'},
+		'UNITA: National Union for the Total Independence of Angola': {column: 'variableE'}
+	}, {xAxis: 'Years', yAxis: 'Amount'});
+	chart.bind("#chart-line1");
+	chart.render();
+});
+
+</script>
+
+<script src='js/multiline.js'></script>
+
+
+<script type="text/javascript">
+$(function() {
+	$('#main-menu a').bind('click',function(event){
+		var $anchor = $(this);
+		$('html, body').stop().animate({
+			scrollTop: $($anchor.attr('href')).offset().top
+		}, 1500,'easeInOutExpo');
+		event.preventDefault();
+	});
+});
+</script>
+
+
+<script type='text/javascript' src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"> </script>
+
+
+</body>
+
+</html>

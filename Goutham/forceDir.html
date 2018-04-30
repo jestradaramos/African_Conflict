@@ -47,8 +47,11 @@
     width: 10px;
   }
 
-  .legend {
-    margin-right:20px;
+  .legend1 {
+    margin-left:20px;
+    margin-right:45px;
+    position: relative;
+    float: right;
   }
 
   .type1 { background: rgb(174, 199, 232);}
@@ -81,10 +84,36 @@
     overflow:auto;
   }
 
+  svg {
+    position: relative;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+.top{
+  text-align: center;
+}
+
 </style>
 </head>
 
 <body>
+
+  <div class="col top">
+    <h2 class="text-center">Conflict Type Force Directed Graph</h2>
+    <p>
+      This graph represents all strengths of different conflicts between the
+      multiple organization types. Each node represents an organization type in
+      Africa while each link represents a specific type of conflict between the different nodes.
+      <br>
+      The weight of the link represents the larger number of instances between the two nodes
+      showcasing huge conflicts between those two types of organizations found in Africa.
+    </p>
+    </div>
+
+
   <div class="legend1">
     <h3>Legend</h3>
     <div class="legend1"> <p class="typeName"><span class="key-dot type1"></span>Government or mutinous force</p> </div>
@@ -841,12 +870,8 @@
   }
 </script>
 
-<!-- <form>
-<h3> Link threshold 0 <input type="range" id="thersholdSlider" name="points" value = 0 min="0" max="10" onchange="threshold(this.value)"> 10 </h3>
-</form> -->
-<!-- //Constants for the SVG -->
 <script>
-var width = 1000,
+var width = 800,
 height = 500;
 
 //Set up the colour scale
