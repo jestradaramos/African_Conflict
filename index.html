@@ -15,6 +15,7 @@
 	<script src='d3v4/d3.min.js'></script>
 	<script src="https://d3js.org/d3.v3.min.js"></script>
 	<script src='js/africa.js'></script>
+	<script src='d3v4/d3.v3.min.js'></script>
 </head>
 
 <style>
@@ -120,6 +121,9 @@ background-color: #659dbd;
 	background-color: #659dbd;
 }
 
+.top{
+  text-align: center;
+}
 
 </style>
 
@@ -195,11 +199,38 @@ background-color: #659dbd;
 		</br>
 
 
-<div id="force">
+<!-- <div id="force">
 	<div class="col-md-12">
-		<object class="force"type="text/html" data="Goutham/forceDir.html"></object>
+
+		<div class="col top">
+	    <h2 class="text-center">Conflict Type Force Directed Graph</h2>
+	    <p>
+	      This graph represents all strengths of different conflicts between the
+	      multiple organization types. Each node represents an organization type in
+	      Africa while each link represents a specific type of conflict between the different nodes.
+	      <br>
+	      The weight of the link represents the larger number of instances between the two nodes
+	      showcasing huge conflicts between those two types of organizations found in Africa.
+	    </p>
+	    </div>
+
+		<div class="legend1">
+		<div class="legend1"> <p class="typeName"><span class="key-dot type1"></span>Government or mutinous force</p> </div>
+		<div class="legend1"> <p class="typeName"><span class="key-dot type2"></span>Rebel force</p> </div>
+		<div class="legend1"> <p class="typeName"><span class="key-dot type3"></span>Political militia</p> </div>
+		<div class="legend1"> <p class="typeName"><span class="key-dot type4"></span>Ethnic militia</p> </div>
+		<div class="legend1"> <p class="typeName"><span class="key-dot type5"></span>Rioters</p> </div>
+		<div class="legend1"> <p class="typeName"><span class="key-dot type6"></span>Protesters</p> </div>
+		<div class="legend1"> <p class="typeName"><span class="key-dot type7"></span>Civilians</p> </div>
+		<div class="legend1"> <p class="typeName"><span class="key-dot type8"></span>Outside/external force</p> </div>
 	</div>
-</div>
+
+
+		<! <object class="force"type="text/html" data="Goutham/forceDir.html"></object> -->
+	<!-- </div>
+</div>  -->
+
+
 <div id="Conflict">
 	<object class="Conflict" type="text/html" data="wordclouds/index.html"></object>
 </div>
@@ -228,9 +259,39 @@ background-color: #659dbd;
 </div> -->
 
 <div id='linked'></div>
+
+<div id="force">
+	<div class="col-md-12">
+
+		<div class="col top">
+	    <h2 class="text-center">Conflict Type Force Directed Graph</h2>
+	    <p>
+	      This graph represents all strengths of different conflicts between the
+	      multiple organization types. Each node represents an organization type in
+	      Africa while each link represents a specific type of conflict between the different nodes.
+	      <br>
+	      The weight of the link represents the larger number of instances between the two nodes
+	      showcasing huge conflicts between those two types of organizations found in Africa.
+	    </p>
+	    </div>
+
+		<div class="legend1">
+		<div class="legend1"> <p class="typeName"><span class="key-dot type1"></span>Government or mutinous force</p> </div>
+		<div class="legend1"> <p class="typeName"><span class="key-dot type2"></span>Rebel force</p> </div>
+		<div class="legend1"> <p class="typeName"><span class="key-dot type3"></span>Political militia</p> </div>
+		<div class="legend1"> <p class="typeName"><span class="key-dot type4"></span>Ethnic militia</p> </div>
+		<div class="legend1"> <p class="typeName"><span class="key-dot type5"></span>Rioters</p> </div>
+		<div class="legend1"> <p class="typeName"><span class="key-dot type6"></span>Protesters</p> </div>
+		<div class="legend1"> <p class="typeName"><span class="key-dot type7"></span>Civilians</p> </div>
+		<div class="legend1"> <p class="typeName"><span class="key-dot type8"></span>Outside/external force</p> </div>
+	</div>
+
+
+		<!-- <object class="force"type="text/html" data="Goutham/forceDir.html"></object> -->
+	</div>
 </div>
 
-</div>
+
 
 <script src='js/map_video.js'></script>
 <script src='js/linked.js'></script>
@@ -275,8 +336,941 @@ $(function() {
 });
 </script>
 
-
 <script type='text/javascript' src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"> </script>
+<script type="application/json" id="mis">
+{
+  "nodes": [
+    {
+      "name": "",
+      "group": 0
+    },
+    {
+      "name": "Government or mutinous force",
+      "group": 1
+    },
+    {
+      "name": "Rebel force",
+      "group": 2
+    }
+    ,{
+      "name": "Political militia",
+      "group": 3
+    }
+    ,{
+      "name": "Ethnic militia",
+      "group": 4
+    }
+    ,{
+      "name": "Rioters",
+      "group": 5
+    }
+    ,{
+      "name": "Protesters",
+      "group": 6
+    }
+    ,{
+      "name": "Civilians",
+      "group": 7
+    }
+    ,{
+      "name": "Outside/external force",
+      "group": 8
+    }],
+    "links":[
+
+      {
+        "source": 1,
+        "target": 1,
+        "value": 1,
+        "inter": 11,
+        "freq": 1706,
+        "norm": 0.061001789,
+        "sourceNm": "Government or mutinous force",
+        "targetNm": "Government or mutinous force",
+        "type": "MILITARY VERSUS MILITARY"
+      },
+      {
+        "source": 1,
+        "target": 2,
+        "value": 1,
+        "inter": 12,
+        "freq": 15033,
+        "norm": 0.537817531,
+        "sourceNm": "Government or mutinous force",
+        "targetNm": "Rebel force",
+        "type": "MILITARY VERSUS REBELS"
+      },
+      {
+        "source": 1,
+        "target": 1,
+        "value": 1,
+        "inter": 13,
+        "freq": 1,
+        "norm": 0,
+        "sourceNm": "Government or mutinous force",
+        "targetNm": "Government or mutinous force",
+        "type": "MILITARY VERSUS POLITICAL MILITIA"
+      },
+      {
+        "source": 1,
+        "target": 3,
+        "value": 1,
+        "inter": 13,
+        "freq": 9027,
+        "norm": 0.32293381,
+        "sourceNm": "Government or mutinous force",
+        "targetNm": "Political militia",
+        "type": "MILITARY VERSUS POLITICAL MILITIA"
+      },
+      {
+        "source": 1,
+        "target": 4,
+        "value": 1,
+        "inter": 14,
+        "freq": 927,
+        "norm": 0.03313059,
+        "sourceNm": "Government or mutinous force",
+        "targetNm": "Ethnic militia",
+        "type": "MILITARY VERSUS COMMUNAL MILITIA"
+      },
+      {
+        "source": 1,
+        "target": 5,
+        "value": 1,
+        "inter": 15,
+        "freq": 993,
+        "norm": 0.03549195,
+        "sourceNm": "Government or mutinous force",
+        "targetNm": "Rioters",
+        "type": "MILITARY VERSUS RIOTERS"
+      },
+      {
+        "source": 1,
+        "target": 6,
+        "value": 1,
+        "inter": 16,
+        "freq": 1404,
+        "norm": 0.05019678,
+        "sourceNm": "Government or mutinous force",
+        "targetNm": "Protesters",
+        "type": "MILITARY VERSUS PROTESTERS"
+      },
+      {
+        "source": 1,
+        "target": 7,
+        "value": 1,
+        "inter": 17,
+        "freq": 10274,
+        "norm": 0.367549195,
+        "sourceNm": "Government or mutinous force",
+        "targetNm": "Civilians",
+        "type": "MILITARY VERSUS CIVILIANS"
+      },
+      {
+        "source": 1,
+        "target": 8,
+        "value": 1,
+        "inter": 18,
+        "freq": 370,
+        "norm": 0.013202147,
+        "sourceNm": "Government or mutinous force",
+        "targetNm": "Outside/external force",
+        "type": "MILITARY VERSUS OTHER"
+      },
+      {
+        "source": 1,
+        "target": 7,
+        "value": 1,
+        "inter": 37,
+        "freq": 1,
+        "norm": 0,
+        "sourceNm": "Government or mutinous force",
+        "targetNm": "Civilians",
+        "type": "POLITICAL MILITIA VERSUS CIVILIANS"
+      },
+      {
+        "source": 2,
+        "target": 1,
+        "value": 1,
+        "inter": 12,
+        "freq": 6266,
+        "norm": 0.224150268,
+        "sourceNm": "Rebel force",
+        "targetNm": "Government or mutinous force",
+        "type": "MILITARY VERSUS REBELS"
+      },
+      {
+        "source": 2,
+        "target": 2,
+        "value": 1,
+        "inter": 22,
+        "freq": 545,
+        "norm": 0.019463327,
+        "sourceNm": "Rebel force",
+        "targetNm": "Rebel force",
+        "type": "REBELS VERSUS REBELS"
+      },
+      {
+        "source": 2,
+        "target": 3,
+        "value": 1,
+        "inter": 23,
+        "freq": 1062,
+        "norm": 0.037960644,
+        "sourceNm": "Rebel force",
+        "targetNm": "Political militia",
+        "type": "REBELS VERSUS POLITICAL MILIITA"
+      },
+      {
+        "source": 2,
+        "target": 4,
+        "value": 1,
+        "inter": 24,
+        "freq": 261,
+        "norm": 0.009302326,
+        "sourceNm": "Rebel force",
+        "targetNm": "Ethnic militia",
+        "type": "REBELS VERSUS COMMUNAL MILITIA"
+      },
+      {
+        "source": 2,
+        "target": 5,
+        "value": 1,
+        "inter": 25,
+        "freq": 3,
+        "norm": 0.0000716,
+        "sourceNm": "Rebel force",
+        "targetNm": "Rioters",
+        "type": "REBELS VERSUS RIOTERS"
+      },
+      {
+        "source": 2,
+        "target": 6,
+        "value": 1,
+        "inter": 26,
+        "freq": 9,
+        "norm": 0.000286225,
+        "sourceNm": "Rebel force",
+        "targetNm": "Protesters",
+        "type": "REBELS VERSUS PROTESTERS"
+      },
+      {
+        "source": 2,
+        "target": 7,
+        "value": 1,
+        "inter": 27,
+        "freq": 9899,
+        "norm": 0.354132379,
+        "sourceNm": "Rebel force",
+        "targetNm": "Civilians",
+        "type": "REBELS VERSUS CIVILIANS"
+      },
+      {
+        "source": 2,
+        "target": 8,
+        "value": 1,
+        "inter": 28,
+        "freq": 890,
+        "norm": 0.031806798,
+        "sourceNm": "Rebel force",
+        "targetNm": "Outside/external force",
+        "type": "REBELS VERSUS OTHERS"
+      },
+      {
+        "source": 3,
+        "target": 1,
+        "value": 1,
+        "inter": 13,
+        "freq": 5693,
+        "norm": 0.203649374,
+        "sourceNm": "Political militia",
+        "targetNm": "Government or mutinous force",
+        "type": "MILITARY VERSUS POLITICAL MILITIA"
+      },
+      {
+        "source": 3,
+        "target": 2,
+        "value": 1,
+        "inter": 22,
+        "freq": 1,
+        "norm": 0,
+        "sourceNm": "Political militia",
+        "targetNm": "Rebel force",
+        "type": "REBELS VERSUS REBELS"
+      },
+      {
+        "source": 3,
+        "target": 2,
+        "value": 1,
+        "inter": 23,
+        "freq": 1358,
+        "norm": 0.048550984,
+        "sourceNm": "Political militia",
+        "targetNm": "Rebel force",
+        "type": "REBELS VERSUS POLITICAL MILIITA"
+      },
+      {
+        "source": 3,
+        "target": 3,
+        "value": 1,
+        "inter": 33,
+        "freq": 2246,
+        "norm": 0.080322004,
+        "sourceNm": "Political militia",
+        "targetNm": "Political militia",
+        "type": "POLITICAL MILITIA VERSUS POLITICAL MILITIA"
+      },
+      {
+        "source": 3,
+        "target": 4,
+        "value": 1,
+        "inter": 34,
+        "freq": 422,
+        "norm": 0.015062612,
+        "sourceNm": "Political militia",
+        "targetNm": "Ethnic militia",
+        "type": "POLITICAL MILITIA VERSUS COMMUNAL MILITIA"
+      },
+      {
+        "source": 3,
+        "target": 5,
+        "value": 1,
+        "inter": 35,
+        "freq": 30,
+        "norm": 0.001037567,
+        "sourceNm": "Political militia",
+        "targetNm": "Rioters",
+        "type": "POLITICAL MILITIA VERSUS RIOTERS"
+      },
+      {
+        "source": 3,
+        "target": 6,
+        "value": 1,
+        "inter": 36,
+        "freq": 70,
+        "norm": 0.002468694,
+        "sourceNm": "Political militia",
+        "targetNm": "Protesters",
+        "type": "POLITICAL MILITIA VERSUS PROTESTERS"
+      },
+      {
+        "source": 3,
+        "target": 7,
+        "value": 1,
+        "inter": 37,
+        "freq": 23433,
+        "norm": 0.838354204,
+        "sourceNm": "Political militia",
+        "targetNm": "Civilians",
+        "type": "POLITICAL MILITIA VERSUS CIVILIANS"
+      },
+      {
+        "source": 3,
+        "target": 8,
+        "value": 1,
+        "inter": 38,
+        "freq": 975,
+        "norm": 0.034847943,
+        "sourceNm": "Political militia",
+        "targetNm": "Outside/external force",
+        "type": "POLITICAL MILITIA VERSUS OTHERS"
+      },
+      {
+        "source": 3,
+        "target": 7,
+        "value": 1,
+        "inter": 47,
+        "freq": 1,
+        "norm": 0,
+        "sourceNm": "Political militia",
+        "targetNm": "Civilians",
+        "type": "COMMUNAL MILITIA VERSUS CIVILIANS"
+      },
+      {
+        "source": 4,
+        "target": 1,
+        "value": 1,
+        "inter": 14,
+        "freq": 604,
+        "norm": 0.02157424,
+        "sourceNm": "Ethnic militia",
+        "targetNm": "Government or mutinous force",
+        "type": "MILITARY VERSUS COMMUNAL MILITIA"
+      },
+      {
+        "source": 4,
+        "target": 2,
+        "value": 1,
+        "inter": 24,
+        "freq": 297,
+        "norm": 0.01059034,
+        "sourceNm": "Ethnic militia",
+        "targetNm": "Rebel force",
+        "type": "REBELS VERSUS COMMUNAL MILITIA"
+      },
+      {
+        "source": 4,
+        "target": 3,
+        "value": 1,
+        "inter": 34,
+        "freq": 363,
+        "norm": 0.012951699,
+        "sourceNm": "Ethnic militia",
+        "targetNm": "Political militia",
+        "type": "POLITICAL MILITIA VERSUS COMMUNAL MILITIA"
+      },
+      {
+        "source": 4,
+        "target": 4,
+        "value": 1,
+        "inter": 44,
+        "freq": 4331,
+        "norm": 0.154919499,
+        "sourceNm": "Ethnic militia",
+        "targetNm": "Ethnic militia",
+        "type": "COMMUNAL MILITIA VERSUS COMMUNAL MILITIA"
+      },
+      {
+        "source": 4,
+        "target": 5,
+        "value": 1,
+        "inter": 45,
+        "freq": 7,
+        "norm": 0.000214669,
+        "sourceNm": "Ethnic militia",
+        "targetNm": "Rioters",
+        "type": "COMMUNAL MILITIA VERSUS RIOTERS"
+      },
+      {
+        "source": 4,
+        "target": 6,
+        "value": 1,
+        "inter": 46,
+        "freq": 4,
+        "norm": 0.000107335,
+        "sourceNm": "Ethnic militia",
+        "targetNm": "Protesters",
+        "type": "COMMUNAL MILITIA VERSUS PROTESTERS"
+      },
+      {
+        "source": 4,
+        "target": 7,
+        "value": 1,
+        "inter": 47,
+        "freq": 5374,
+        "norm": 0.192236136,
+        "sourceNm": "Ethnic militia",
+        "targetNm": "Civilians",
+        "type": "COMMUNAL MILITIA VERSUS CIVILIANS"
+      },
+      {
+        "source": 4,
+        "target": 8,
+        "value": 1,
+        "inter": 48,
+        "freq": 60,
+        "norm": 0.002110912,
+        "sourceNm": "Ethnic militia",
+        "targetNm": "Outside/external force",
+        "type": "COMMUNAL MILITIA VERSUS OTHER"
+      },
+      {
+        "source": 5,
+        "target": 1,
+        "value": 1,
+        "inter": 15,
+        "freq": 6286,
+        "norm": 0.224865832,
+        "sourceNm": "Rioters",
+        "targetNm": "Government or mutinous force",
+        "type": "MILITARY VERSUS RIOTERS"
+      },
+      {
+        "source": 5,
+        "target": 2,
+        "value": 1,
+        "inter": 25,
+        "freq": 17,
+        "norm": 0.000572451,
+        "sourceNm": "Rioters",
+        "targetNm": "Rebel force",
+        "type": "REBELS VERSUS RIOTERS"
+      },
+      {
+        "source": 5,
+        "target": 3,
+        "value": 1,
+        "inter": 35,
+        "freq": 118,
+        "norm": 0.004186047,
+        "sourceNm": "Rioters",
+        "targetNm": "Political militia",
+        "type": "POLITICAL MILITIA VERSUS RIOTERS"
+      },
+      {
+        "source": 5,
+        "target": 4,
+        "value": 1,
+        "inter": 45,
+        "freq": 20,
+        "norm": 0.000679785,
+        "sourceNm": "Rioters",
+        "targetNm": "Ethnic militia",
+        "type": "COMMUNAL MILITIA VERSUS RIOTERS"
+      },
+      {
+        "source": 5,
+        "target": 5,
+        "value": 1,
+        "inter": 55,
+        "freq": 1407,
+        "norm": 0.050304114,
+        "sourceNm": "Rioters",
+        "targetNm": "Rioters",
+        "type": "RIOTERS VERSUS RIOTERS"
+      },
+      {
+        "source": 5,
+        "target": 6,
+        "value": 1,
+        "inter": 56,
+        "freq": 39,
+        "norm": 0.001359571,
+        "sourceNm": "Rioters",
+        "targetNm": "Protesters",
+        "type": "RIOTERS VERSUS PROTESTERS"
+      },
+      {
+        "source": 5,
+        "target": 7,
+        "value": 1,
+        "inter": 57,
+        "freq": 889,
+        "norm": 0.03177102,
+        "sourceNm": "Rioters",
+        "targetNm": "Civilians",
+        "type": "RIOTERS VERSUS CIVILIANS"
+      },
+      {
+        "source": 5,
+        "target": 8,
+        "value": 1,
+        "inter": 58,
+        "freq": 240,
+        "norm": 0.008550984,
+        "sourceNm": "Rioters",
+        "targetNm": "Outside/external force",
+        "type": "RIOTERS VERSUS OTHERS"
+      },
+      {
+        "source": 6,
+        "target": 1,
+        "value": 1,
+        "inter": 16,
+        "freq": 3370,
+        "norm": 0.120536673,
+        "sourceNm": "Protesters",
+        "targetNm": "Government or mutinous force",
+        "type": "MILITARY VERSUS PROTESTERS"
+      },
+      {
+        "source": 6,
+        "target": 2,
+        "value": 1,
+        "inter": 26,
+        "freq": 15,
+        "norm": 0.000500894,
+        "sourceNm": "Protesters",
+        "targetNm": "Rebel force",
+        "type": "REBELS VERSUS PROTESTERS"
+      },
+      {
+        "source": 6,
+        "target": 3,
+        "value": 1,
+        "inter": 36,
+        "freq": 72,
+        "norm": 0.00254025,
+        "sourceNm": "Protesters",
+        "targetNm": "Political militia",
+        "type": "POLITICAL MILITIA VERSUS PROTESTERS"
+      },
+      {
+        "source": 6,
+        "target": 4,
+        "value": 1,
+        "inter": 46,
+        "freq": 7,
+        "norm": 0.000214669,
+        "sourceNm": "Protesters",
+        "targetNm": "Ethnic militia",
+        "type": "COMMUNAL MILITIA VERSUS PROTESTERS"
+      },
+      {
+        "source": 6,
+        "target": 5,
+        "value": 1,
+        "inter": 56,
+        "freq": 36,
+        "norm": 0.001252236,
+        "sourceNm": "Protesters",
+        "targetNm": "Rioters",
+        "type": "RIOTERS VERSUS PROTESTERS"
+      },
+      {
+        "source": 6,
+        "target": 6,
+        "value": 1,
+        "inter": 66,
+        "freq": 89,
+        "norm": 0.003148479,
+        "sourceNm": "Protesters",
+        "targetNm": "Protesters",
+        "type": "PROTESTERS VERSUS PROTESTERS"
+      },
+      {
+        "source": 6,
+        "target": 8,
+        "value": 1,
+        "inter": 68,
+        "freq": 69,
+        "norm": 0.002432916,
+        "sourceNm": "Protesters",
+        "targetNm": "Outside/external force",
+        "type": "PROTESTERS VERSUS OTHER"
+      },
+      {
+        "source": 7,
+        "target": 1,
+        "value": 1,
+        "inter": 17,
+        "freq": 3,
+        "norm": 0.0000716,
+        "sourceNm": "Civilians",
+        "targetNm": "Government or mutinous force",
+        "type": "MILITARY VERSUS CIVILIANS"
+      },
+      {
+        "source": 7,
+        "target": 2,
+        "value": 1,
+        "inter": 27,
+        "freq": 1,
+        "norm": 0,
+        "sourceNm": "Civilians",
+        "targetNm": "Rebel force",
+        "type": "REBELS VERSUS CIVILIANS"
+      },
+      {
+        "source": 7,
+        "target": 3,
+        "value": 1,
+        "inter": 37,
+        "freq": 2,
+        "norm": 0.0000358,
+        "sourceNm": "Civilians",
+        "targetNm": "Political militia",
+        "type": "POLITICAL MILITIA VERSUS CIVILIANS"
+      },
+      {
+        "source": 7,
+        "target": 7,
+        "value": 1,
+        "inter": 77,
+        "freq": 11,
+        "norm": 0.000357782,
+        "sourceNm": "Civilians",
+        "targetNm": "Civilians",
+        "type": ""
+      },
+      {
+        "source": 8,
+        "target": 1,
+        "value": 1,
+        "inter": 18,
+        "freq": 659,
+        "norm": 0.023542039,
+        "sourceNm": "Outside/external force",
+        "targetNm": "Government or mutinous force",
+        "type": "MILITARY VERSUS OTHER"
+      },
+      {
+        "source": 8,
+        "target": 2,
+        "value": 1,
+        "inter": 28,
+        "freq": 3147,
+        "norm": 0.11255814,
+        "sourceNm": "Outside/external force",
+        "targetNm": "Rebel force",
+        "type": "REBELS VERSUS OTHERS"
+      },
+      {
+        "source": 8,
+        "target": 3,
+        "value": 1,
+        "inter": 38,
+        "freq": 765,
+        "norm": 0.027334526,
+        "sourceNm": "Outside/external force",
+        "targetNm": "Political militia",
+        "type": "POLITICAL MILITIA VERSUS OTHERS"
+      },
+      {
+        "source": 8,
+        "target": 4,
+        "value": 1,
+        "inter": 48,
+        "freq": 67,
+        "norm": 0.00236136,
+        "sourceNm": "Outside/external force",
+        "targetNm": "Ethnic militia",
+        "type": "COMMUNAL MILITIA VERSUS OTHER"
+      },
+      {
+        "source": 8,
+        "target": 5,
+        "value": 1,
+        "inter": 58,
+        "freq": 17,
+        "norm": 0.000572451,
+        "sourceNm": "Outside/external force",
+        "targetNm": "Rioters",
+        "type": "RIOTERS VERSUS OTHERS"
+      },
+      {
+        "source": 8,
+        "target": 6,
+        "value": 1,
+        "inter": 68,
+        "freq": 13,
+        "norm": 0.000429338,
+        "sourceNm": "Outside/external force",
+        "targetNm": "Protesters",
+        "type": "PROTESTERS VERSUS OTHER"
+      },
+      {
+        "source": 8,
+        "target": 7,
+        "value": 1,
+        "inter": 78,
+        "freq": 883,
+        "norm": 0.031556351,
+        "sourceNm": "Outside/external force",
+        "targetNm": "Civilians",
+        "type": "OTHER ACTOR VERSUS CIVILIANS"
+      },
+      {
+        "source": 8,
+        "target": 8,
+        "value": 1,
+        "inter": 88,
+        "freq": 73,
+        "norm": 0.002576029,
+        "sourceNm": "Outside/external force",
+        "targetNm": "Outside/external force",
+        "type": ""
+      }
+
+    ]
+  }
+</script>
+
+<script>
+var width = 800,
+height = 500;
+
+//Set up the colour scale
+var color = d3.scale.category20();
+
+//Set up the force layout
+var force = d3.layout.force()
+.charge(-120)
+.linkDistance(200)
+.size([width, height]);
+
+//Append a SVG to the body of the html page. Assign this SVG as an object to svg
+var svg = d3.select("body").append("svg")
+.attr("width", width)
+.attr("height", height);
+
+//Set up tooltip
+var tip = d3.tip()
+.attr('class', 'd3-tip')
+.offset([-10, 0])
+.html(function (d) {
+  return  d.name + "";
+})
+svg.call(tip);
+
+var tip2 = d3.tip()
+.attr('class', 'd3-tip2')
+.offset([-10, 0])
+.html(function (d) {
+  return "Number of Instances: "+ d.freq + "<br> Interaction: "+ d.type + "";
+})
+svg.call(tip2);
+
+//Read the data from the mis element
+var mis = document.getElementById('mis').innerHTML;
+graph = JSON.parse(mis);
+graphRec=JSON.parse(JSON.stringify(graph)); //Add this line
+
+//Creates the graph data structure out of the json data
+force.nodes(graph.nodes)
+.links(graph.links)
+.start();
+
+//Create all the line svgs but without locations yet
+var link = svg.selectAll(".link")
+.data(graph.links)
+.enter().append("line")
+.on('mouseover', tip2.show)
+.on('mouseout', tip2.hide)
+.attr("class", "link")
+// .style("stroke", function(d) { return color(d.norm); })
+// .style("marker-end",  "url(#suit)") // Modified line
+.style("stroke-width", function (d) {
+  return Math.sqrt(d.norm*20);
+});
+
+//Do the same with the circles for the nodes - no
+var node = svg.selectAll(".node")
+.data(graph.nodes)
+.enter().append("circle")
+.attr("class", "node")
+.attr("r", 15)
+.style("fill", function (d) {
+  return color(d.group);
+})
+.style("visibility", function (d) {
+  return d.group === 0 ? "hidden" : "visible";
+})
+.call(force.drag)
+.on('dblclick', connectedNodes)
+.on('mouseover', tip.show)
+.on('mouseout', tip.hide);
+
+
+//Now we are giving the SVGs co-ordinates - the force layout is generating the co-ordinates which this code is using to update the attributes of the SVG elements
+force.on("tick", function () {
+  link.attr("x1", function (d) {
+    return d.source.x;
+  })
+  .attr("y1", function (d) {
+    return d.source.y;
+  })
+  .attr("x2", function (d) {
+    return d.target.x;
+  })
+  .attr("y2", function (d) {
+    return d.target.y;
+  });
+
+  node.attr("cx", function (d) {
+    return d.x;
+  })
+  .attr("cy", function (d) {
+    return d.y;
+  });
+  node.each(collide(0.5)); //Added
+});
+
+svg.append("defs").selectAll("marker")
+.data(["suit", "licensing", "resolved"])
+.enter().append("marker")
+.attr("id", function(d) { return d; })
+.attr("viewBox", "0 -5 10 10")
+.attr("refX", 25)
+.attr("refY", 0)
+.attr("markerWidth", 6)
+.attr("markerHeight", 6)
+.attr("orient", "auto")
+.append("path")
+.attr("d", "M0,-5L10,0L0,5 L10,0 L0, -5")
+.style("stroke", "#4679BD")
+.style("opacity", "0.6");
+
+//adjust threshold
+function threshold(thresh) {
+  graph.links.splice(0, graph.links.length);
+  for (var i = 0; i < graphRec.links.length; i++) {
+    if (graphRec.links[i].value > thresh) {graph.links.push(graphRec.links[i]);}
+  }
+  restart();
+}
+//Restart the visualisation after any node and link changes
+function restart() {
+  link = link.data(graph.links);
+  link.exit().remove();
+  link.enter().insert("line", ".node").attr("class", "link");
+  node = node.data(graph.nodes);
+  node.enter().insert("circle", ".cursor").attr("class", "node").attr("r", 5).call(force.drag);
+  force.start();
+}
+
+
+var padding = 10, // separation between circles
+radius=15;
+function collide(alpha) {
+  var quadtree = d3.geom.quadtree(graph.nodes);
+  return function(d) {
+    var rb = 2*radius + padding,
+    nx1 = d.x - rb,
+    nx2 = d.x + rb,
+    ny1 = d.y - rb,
+    ny2 = d.y + rb;
+    quadtree.visit(function(quad, x1, y1, x2, y2) {
+      if (quad.point && (quad.point !== d)) {
+        var x = d.x - quad.point.x,
+        y = d.y - quad.point.y,
+        l = Math.sqrt(x * x + y * y);
+        if (l < rb) {
+          l = (l - rb) / l * alpha;
+          d.x -= x *= l;
+          d.y -= y *= l;
+          quad.point.x += x;
+          quad.point.y += y;
+        }
+      }
+      return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
+    });
+  };
+}
+
+//Toggle stores whether the highlighting is on
+var toggle = 0;
+//Create an array logging what is connected to what
+var linkedByIndex = {};
+for (i = 0; i < graph.nodes.length; i++) {
+  linkedByIndex[i + "," + i] = 1;
+};
+graph.links.forEach(function (d) {
+  linkedByIndex[d.source.index + "," + d.target.index] = 1;
+});
+//This function looks up whether a pair are neighbours
+function neighboring(a, b) {
+  return linkedByIndex[a.index + "," + b.index];
+}
+function connectedNodes() {
+  if (toggle == 0) {
+    d = d3.select(this).node().__data__;
+    node.style("opacity", function (o) {
+      return neighboring(d, o) | neighboring(o, d) ? 1 : 0.1;
+    });
+    link.style("opacity", function (o) {
+      return d.index==o.source.index | d.index==o.target.index ? 1 : 0.1;
+    });
+    toggle = 1;
+  } else {
+    //Put them back to opacity=1
+    node.style("opacity", 1);
+    link.style("opacity", 1);
+    toggle = 0;
+  }
+}
+
+</script>
 
 
 </body>
