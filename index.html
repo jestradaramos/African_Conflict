@@ -1,62 +1,100 @@
 <html>
-	<head>
-		<title>Conflicts in Africa</title>	
-		<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-		<script src="http://code.jquery.com/jquery-migrate-3.0.1.min.js" integrity="sha256-F0O1TmEa4I8N24nY0bya59eP6svWcshqX1uzwaWC4F4=" crossorigin="anonymous"></script>
-		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.5/waypoints.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
-		<link rel='stylesheet' type='text/css' href='africa-style.css'>
-		<link href="https://fonts.googleapis.com/css?family=Oswald:600" rel="stylesheet">
-		<script src='d3v4/d3.min.js'></script>
-		<script src="https://d3js.org/d3.v3.min.js"></script>
-		<script src='js/africa.js'></script>
-	</head>
-	<style>
-		.label { font-size: 10px; }
-		.line { fill: none; stroke-width: 1.4px; stroke: #74736c;}
-		.area { fill: #cec6b9; }
-		.background {fill: none;}
-		.chart {
-			float: left;
-			padding-right: 5px;
-			padding-bottom: 5px;
-			padding-top: 0;
-			padding-left: 0;
-		}
-		.yaxis path,
-		.yaxis line {
-			fill:none;
-			stroke: #fff;
-			opacity: 0.5;
-			shape-rendering: crispEdges;
-		}
-	svg { border: solid 0.5px #333; margin: 5px;}
-	</style>
-	<body>
-		<div class="hero-image">
-  			<div class="hero-text">
-  				<h1 class='text-center' id='hero-title'>African Conflicts</h1>
-  				<p class='text-center'id='hero-sub'>For the past 20 years</p>
-    			<button>Go!</button>
-  			</div>
+<head>
+	<title>Conflicts in Africa</title>
+	<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script src="http://code.jquery.com/jquery-migrate-3.0.1.min.js" integrity="sha256-F0O1TmEa4I8N24nY0bya59eP6svWcshqX1uzwaWC4F4=" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.5/waypoints.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
+	<link rel='stylesheet' type='text/css' href='africa-style.css'>
+	<link href="https://fonts.googleapis.com/css?family=Oswald:600" rel="stylesheet">
+	<script src='d3v4/d3.min.js'></script>
+	<script src="https://d3js.org/d3.v3.min.js"></script>
+	<script src='js/africa.js'></script>
+</head>
+<style>
+.label { font-size: 10px; }
+.line { fill: none; stroke-width: 1.4px; stroke: #74736c;}
+.area { fill: #cec6b9; }
+.background {fill: none;}
+.chart {
+	float: left;
+	padding-right: 5px;
+	padding-bottom: 5px;
+	padding-top: 0;
+	padding-left: 0;
+}
+.yaxis path,
+.yaxis line {
+	fill:none;
+	stroke: #fff;
+	opacity: 0.5;
+	shape-rendering: crispEdges;
+}
+svg { border: solid 0.5px #333; margin: 5px;}
+
+#learn-more.semi-transparent-button, #see-full-list.semi-transparent-button, .semi-transparent-button{
+	display: block;
+	box-sizing: border-box;
+	margin: 25px auto;
+	padding: 8px;
+	width: 12em;
+	background-color: rgba(200, 200, 200, 0.2);
+	border-radius: 2px;
+	border-color: rgba(200, 200, 200, 0.3);
+	color: #fff;
+	text-align: center;
+	text-decoration: none;
+	letter-spacing: 1px;
+	transition: all 0.3s ease-out;
+	border: 1px solid rgba(200, 200, 200, 0.3);
+	text-decoration-color: white;
+}
+
+#learn-more.semi-transparent-button:hover, #see-full-list.semi-transparent-button:hover, .semi-transparent-button:hover{
+	border: 1px solid white;
+}
+
+
+</style>
+<body>
+	<div class="hero-image">
+		<div class="hero-text">
+			<h1 class='text-center' id='hero-title'>African Conflicts</h1>
+			<p class='text-center'id='hero-sub'>For the past 20 years</p>
+			<div id="main-menu">
+				<a href="#start"id = "learn-more" class="cd-btn semi-transparent-button" role="button">Learn More</a>
+			</div>
 		</div>
-		<div class="row map-row">
-			<div class="col-md-6">
-				<div class = 'center-block' id='vis'>
-					<button id='play-button'>Play</button>
-				</div>
-			</div>	
-			<div class="col">
-				<h2 class="text-center">Conflicts Over Time</h2>
-				<p>We should add some stuff here</p>
+	</div>
+
+	<!-- When user clicks the learn more button, webpage moves to this start div -->
+	<div id="start"></div>
+
+	<div class="row map-row">
+		<div class="col-md-6">
+			<div class = 'center-block' id='vis'>
+				<button id='play-button'>Play</button>
+			</div>
+		</div>
+		<div class="col">
+			<h2 class="text-center">Conflicts Over Time</h2>
+			<p>These graphs display the total count of conflicts per year and the total count
+				of fatalities per year respectively.
+
+				Each year's sum is subdivided by Actor Type to show the breakdown among the
+				different groups each year.
+
+				The total count of yearly fatalities has decreased since 1997, while the count
+				of yearly conflicts appears to be increasing. This would suggest that the
+				stability of the African Conflict is tumultuous, but the drastic reduction in
+				fatalities is a positive </p>
 			</div>
 			<br>
 		</div>
-	
 
 		<div class="row linked-row">
 			<div class="col">
@@ -65,18 +103,19 @@
 			</div>
 			<div class="col-md-6">
 				<div id='linked'></div>
-			</div>	
+			</div>
 		</div>
 		<div class = "row line-row">
 			<div class='col-md-6'>
 				<div class="chart-wrapper" id="chart-line1"></div>
 			</div>
-			
+
 		</div>
 		<script src='js/map_video.js'></script>
 		<script src='js/linked.js'></script>
 		<script src='js/style.js'></script>
 		<script type='text/javascript'>
+		
     		d3.csv('/csv/multiline_data.csv', function(error, data) {
     		data.forEach(function (d) {
     		    d.year = +d.year;
@@ -96,11 +135,43 @@
     		}, {xAxis: 'Years', yAxis: 'Amount'});
     		chart.bind("#chart-line1");
     		chart.render();
-
 			});
 			
+		d3.csv('/csv/multiline_data.csv', function(error, data) {
+			data.forEach(function (d) {
+				d.year = +d.year;
+				d.variableA = +d.variableA;
+				d.variableB = +d.variableB;
+				d.variableC = +d.variableC;
+				d.variableD = +d.variableD;
+				d.variableE = +d.variableE;
+			});
+			var chart = makeLineChart(data, 'year', {
+				'Civilians (Burundi)': {column: 'variableA'},
+				'Civilians (Democratic Republic of Congo)': {column: 'variableB'},
+				'Military Forces of Democratic Republic of Congo (2001-)': {column: 'variableC'},
+				'Protesters (Egypt)': {column: 'variableD'},
+				'UNITA: National Union for the Total Independence of Angola': {column: 'variableE'}
+			}, {xAxis: 'Years', yAxis: 'Amount'});
+			chart.bind("#chart-line1");
+			chart.render();
+		});
+
 		</script>
 		<script src='js/multiline.js'></script>
+		<script type="text/javascript">
+		$(function() {
+			$('#main-menu a').bind('click',function(event){
+				var $anchor = $(this);
+				$('html, body').stop().animate({
+					scrollTop: $($anchor.attr('href')).offset().top
+				}, 1500,'easeInOutExpo');
+				event.preventDefault();
+			});
+		});
+		</script>
+
+
 	</body>
-	
-</html>
+
+	</html>

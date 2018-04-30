@@ -29,7 +29,7 @@
     </script>
   </head>
   <body>
-    <h2 style="padding-left:60px;">Total Funding Rounds in CrunchBase by Quarter</h2>
+    <h2 style="padding-left:60px;">Conflict Count by Year and Actor Type</h2>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -39,7 +39,7 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
-      var margin = {top: 20, right: 55, bottom: 30, left: 40},
+      var margin = {top: 20, right: 55, bottom: 30, left: 80},
           width  = 1000 - margin.left - margin.right,
           height = 500  - margin.top  - margin.bottom;
 
@@ -101,7 +101,7 @@
             .attr("y", 6)
             .attr("dy", ".71em")
             .style("text-anchor", "end")
-            .text("Number of Rounds");
+            .text("Number of Conflicts");
 
         var selection = svg.selectAll(".series")
             .data(data)
@@ -127,17 +127,17 @@
             .attr("transform", function (d, i) { return "translate(55," + i * 20 + ")"; });
 
         legend.append("rect")
-            .attr("x", width - 10)
+            .attr("x", 5)
             .attr("width", 10)
             .attr("height", 10)
             .style("fill", color)
             .style("stroke", "grey");
 
         legend.append("text")
-            .attr("x", width - 12)
+            .attr("x", 20)
             .attr("y", 6)
             .attr("dy", ".35em")
-            .style("text-anchor", "end")
+            .style("text-anchor", "beginning")
             .text(function (d) { return d; });
 
         function removePopovers () {
