@@ -136,7 +136,38 @@ background-color: #659dbd;
 
 <body>
 
+	<!-- <div class="bootstrap">
+	<nav id='nav_bar' class="navbar navbar-default navbar-fixed-top sticky" role="navigation">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse">
+				<span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+			</button> <a style="font-weight:bold" class="navbar-brand" href=index.html>RANKIT</a>
+		</div>
+		<div>
+			<ul class="nav navbar-nav navbar-right" id="main-menu">
+				<li>
+					<a href=#>Start RANKIT</a>
+				</li>
+				<li>
+					<a href=#>About</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+</div> -->
+
 	<div class="hero-image">
+<!--
+		<div id="header">
+			<ul id="main-menu">
+				<li><a href="#about"></a></li>
+				<li><a href="#experience"></a></li>
+				<li><a href="#work"></a></li>
+				<li><a href="#connect"></a></li>
+			</ul>
+		</div> -->
+
+
 		<div class="hero-text">
 			<h1 class='text-center' id='hero-title'>African Conflicts</h1>
 			<p class='text-center'id='hero-sub'>For the past 20 years</p>
@@ -181,7 +212,10 @@ background-color: #659dbd;
 
 			<div style="background-color:#f9f9f9">
 			<div class="row link-row">
+				<div style="background-color:#659dbd">
 			<div class="col-md-12">
+				<br>
+				<br>
 				<h2 class="text-center">Conflicts by Type Over Time</h2>
 				<p class="text-center">In this small linked multiple, each line chart represents the
 					number of conflict per year for that conflict type. You can
@@ -193,6 +227,10 @@ background-color: #659dbd;
 						violence against civilians, and battles with no change of
 						territories are on the rise in most recent years. </p>
 					</div>
+					<br>
+					<br>
+
+				</div>
 
 					<div class= "center">
 						<div id='linked'></div>
@@ -207,7 +245,10 @@ background-color: #659dbd;
 <div id="force">
 	<div class="col-md-12">
 
+		<div style="background-color:#659dbd">
 		<div class="col top">
+			<br>
+			<br>
 	    <h2 class="text-center">Conflict Type Force Directed Graph</h2>
 	    <p>
 	      This graph represents all strengths of different conflicts between the
@@ -227,6 +268,11 @@ background-color: #659dbd;
 		<span class="key-dot type6"></span>Protesters
 		<span class="key-dot type7"></span>Civilians
 		<span class="key-dot type8"></span>Outside/external force</p>
+		<br>
+		<br>
+
+
+	</div>
 
 
 		<object class="force"type="text/html" data="Goutham/forceDir.html"></object>
@@ -236,9 +282,46 @@ background-color: #659dbd;
 
 
 <div id="Conflict">
+
+	<div style="background-color:#659dbd">
+<div class="col-md-12">
+	<br>
+	<br>
+	<h2 class="text-center">African Conflict Word Cloud Slideshow</h2>
+	<br>
+	<p class="text-center">
+		Using the comments for each instance we constructed a word cloud
+		based on the most frequent words for each year of our data set. </br>
+	</p>
+
+		<p class="text-center">
+			These word clouds show the most used words for each year which
+			can tell us a summary of what most likely happened.
+
+		</p>
+		</div>
+		<br>
+		<br>
+	</div>
+	<br>
+	<br>
 	<object class="Conflict" type="text/html" data="wordclouds/index.html"></object>
 </div>
+
 <div id="fatalities">
+
+	<div style="background-color:#659dbd">
+<div class="col-md-12">
+	<br>
+	<br>
+	<h2 class="text-center">Conflict and Fatality Count by Year and Actor Type</h2>
+		</div>
+		<br>
+		<br>
+
+	</div>
+
+
 	<object class="fatalities" type="text/html" data="Zach/stacked_conflicts/index.html"></object>
 </div>
 <div id="word">
