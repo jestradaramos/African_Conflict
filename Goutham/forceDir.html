@@ -48,11 +48,12 @@
     width: 10px;
   }
 
+  #legend1{
+      overflow:hidden;
+  }
   .legend1 {
-    margin-left:20px;
-    margin-right:45px;
-    position: relative;
-    float: right;
+      float:left;
+      margin-right: 1em;
   }
 
   .type1 { background: rgb(174, 199, 232);}
@@ -102,7 +103,7 @@
 
 <body>
 
-  <div class="col top">
+  <!-- <div class="col top">
     <h2 class="text-center">Conflict Type Force Directed Graph</h2>
     <p>
       This graph represents all strengths of different conflicts between the
@@ -112,10 +113,10 @@
       The weight of the link represents the larger number of instances between the two nodes
       showcasing huge conflicts between those two types of organizations found in Africa.
     </p>
-    </div>
+    </div> -->
 
 
-  <div class="legend1">
+  <!-- <div class="legend1">
     <h3>Legend</h3>
     <div class="legend1"> <p class="typeName"><span class="key-dot type1"></span>Government or mutinous force</p> </div>
     <div class="legend1"> <p class="typeName"><span class="key-dot type2"></span>Rebel force</p> </div>
@@ -125,7 +126,7 @@
     <div class="legend1"> <p class="typeName"><span class="key-dot type6"></span>Protesters</p> </div>
     <div class="legend1"> <p class="typeName"><span class="key-dot type7"></span>Civilians</p> </div>
     <div class="legend1"> <p class="typeName"><span class="key-dot type8"></span>Outside/external force</p> </div>
-  </div>
+  </div> -->
 
   <!-- <div class="box">
   <h3>Conflict Description</h3>
@@ -872,8 +873,8 @@
 </script>
 
 <script>
-var width = 800,
-height = 500;
+var width = 1450,
+height = 600;
 
 //Set up the colour scale
 var color = d3.scale.category20();
@@ -892,7 +893,7 @@ var svg = d3.select("body").append("svg")
 //Set up tooltip
 var tip = d3.tip()
 .attr('class', 'd3-tip')
-.offset([-10, 0])
+.offset([-5, 0])
 .html(function (d) {
   return  d.name + "";
 })
@@ -900,7 +901,7 @@ svg.call(tip);
 
 var tip2 = d3.tip()
 .attr('class', 'd3-tip2')
-.offset([-10, 0])
+.offset([-5, 0])
 .html(function (d) {
   return "Number of Instances: "+ d.freq + "<br> Interaction: "+ d.type + "";
 })
