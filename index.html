@@ -89,6 +89,22 @@ object{
 		height: 100%;
 }
 
+object .size{
+	  object-fit: cover;
+}
+
+
+.text-center {
+	text-align: center;
+}
+
+.center{
+		position: relative;
+		left: 60%;
+		-webkit-transform: translateX(-50%);
+		-ms-transform: translateX(-50%);
+		transform: translateX(-50%);
+}
 
 </style>
 
@@ -106,30 +122,52 @@ object{
 	<!-- When user clicks the learn more button, webpage moves to this start div -->
 	<div id="start"></div>
 
-	<!-- <div class="row"> -->
-	<div style="background-color:#2980B9">
-
-		<br><br>
-		<div class="col top">
+	<div class="row map-row">
+		<!-- <div class="col-md-6">
+			<iframe src="/google/index2.html" width='1400' height='700' ></iframe>
+		</div> -->
+		<div class="col">
 			<h2 class="text-center">Conflicts Over Time</h2>
-			<p>These graphs display the total count of conflicts per year and the total count
-				of fatalities per year respectively.
-
-				Each year's sum is subdivided by Actor Type to show the breakdown among the
-				different groups each year.
-
-				The total count of yearly fatalities has decreased since 1997, while the count
-				of yearly conflicts appears to be increasing. This would suggest that the
-				stability of the African Conflict is tumultuous, but the drastic reduction in
-				fatalities is a positive </p>
+			<p class="text-center">This is a map which pins each of the reported location of
+			conflicts. You can click on a pin to see the death toll, you can
+			zoom in and out, and you have different views of the map. </p>
+			<p class="text-center">Things that are recognizable here is that as you search through
+			higher death tolls, all the pins tend to be around the mid region on
+			Africa. From this we can tell that most of events that happen
+			towards the middle of the continent are much more violent than the
+			edges.</p>
 			</div>
+			<br>
 
-			<div class="col-md-12">
-				<div id='linked'></div>
-			</div>
-		</br>
-	</br>
-</div>
+			<object class="size" type="text/html" data="google/index2.html"></object>
+
+
+
+		</div>
+
+
+
+					<div class="col-md-12">
+						<h2 class="text-center">Conflicts by Type Over Time</h2>
+						<p class="text-center">In this small linked multiple, each line chart represents the
+						number of conflict per year for that conflict type. You can
+						hover over one of them and it will have a tooltip appear at each
+						graph showing the count. This is to make it easier to compare
+						all of the event types</p>
+
+						<p class="text-center"> Some of the things you can notice is that riots/protests,
+						violence against civilians, and battles with no change of
+						territories are on the rise in most recent years. </p>
+					</div>
+
+					<div class= "center">
+						<div id='linked'></div>
+					</div>
+				</div>
+				</br>
+			</br>
+		</div>
+
 
 <!-- <div class = 'center' id='vis'>
 	<h2 class="text-center">African Conflict Map</h2>
