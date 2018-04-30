@@ -77,18 +77,24 @@ svg { border: solid 0.5px #333; margin: 5px;}
 
 #linked {
 	display: block;
-	margin-left: 50px;
-	margin-right: auto;
+	margin-left: 200px;
+	margin-right: 200px;
+	float: 	left;
 }
 
 object{
-	background-color: #daad86;
+	/* background-color: #daad86; */
 	margin-top: 10px;
 	height: 70vh;
 	width: 100%;
 	height: 100%;
 }
 
+.Conflict {
+	width: 100%;
+	height: 180vh;
+
+}
 
 .text-center {
 	text-align: center;
@@ -98,11 +104,22 @@ object{
 
 .center{
 	position: relative;
-	left: 60%;
+	left: 50%;
 	-webkit-transform: translateX(-50%);
 	-ms-transform: translateX(-50%);
 	transform: translateX(-50%);
 }
+
+.fatalities {
+background-color: #daad86;
+}
+.word{
+background-color: #659dbd;
+}
+.force{
+	background-color: #659dbd;
+}
+
 
 </style>
 
@@ -157,7 +174,7 @@ object{
 
 
 			<div class="row link-row">
-			<div class="col-md-12" style="background-color: #daad86">
+			<div class="col-md-12">
 				<h2 class="text-center">Conflicts by Type Over Time</h2>
 				<p class="text-center">In this small linked multiple, each line chart represents the
 					number of conflict per year for that conflict type. You can
@@ -180,17 +197,17 @@ object{
 
 <div id="force">
 	<div class="col-md-12">
-		<object type="text/html" data="Goutham/forceDir.html"></object>
+		<object class="force"type="text/html" data="Goutham/forceDir.html"></object>
 	</div>
 </div>
 <div id="Conflict">
-	<object type="text/html" data="wordclouds/index.html"></object>
+	<object class="Conflict" type="text/html" data="wordclouds/index.html"></object>
 </div>
 <div id="fatalities">
-	<object type="text/html" data="Zach/stacked_conflicts/index.html"></object>
+	<object class="fatalities" type="text/html" data="Zach/stacked_conflicts/index.html"></object>
 </div>
 <div id="word">
-	<object type="text/html" data="Zach/stacked_fatalities/index.html"></object>
+	<object class="word" type="text/html" data="Zach/stacked_fatalities/index.html"></object>
 </div>
 
 
